@@ -29,14 +29,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidgetConfigureActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
+            <state relative-caret-position="360">
               <caret line="30" selection-start-line="30" selection-end-line="30" />
               <folding>
-                <element signature="e#730#1633#0" expanded="true" />
-                <element signature="e#1632#1633#0" expanded="true" />
                 <element signature="e#1681#1682#0" expanded="true" />
                 <element signature="e#1704#1705#0" expanded="true" />
-                <element signature="e#2551#2595#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,8 +102,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -150,6 +145,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -394,6 +391,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1721" height="935" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.21192053" />
@@ -409,9 +407,9 @@
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="5" sideWeight="0.5027092" side_tool="true" visible="true" weight="0.21046077" />
-      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.4972908" visible="true" weight="0.21046077" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4984949" weight="0.1992528" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="5" sideWeight="0.50210714" side_tool="true" visible="true" weight="0.1992528" />
+      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.4972908" weight="0.21046077" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49789283" visible="true" weight="0.1992528" />
       <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49969897" weight="0.32876712" />
       <window_info anchor="bottom" id="Android Profiler" order="9" show_stripe_button="false" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -490,9 +488,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/app" />
-      <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="Initial" />
     <MESSAGE value="Initial2" />
@@ -514,14 +512,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidgetConfigureActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
+        <state relative-caret-position="360">
           <caret line="30" selection-start-line="30" selection-end-line="30" />
           <folding>
-            <element signature="e#730#1633#0" expanded="true" />
-            <element signature="e#1632#1633#0" expanded="true" />
             <element signature="e#1681#1682#0" expanded="true" />
             <element signature="e#1704#1705#0" expanded="true" />
-            <element signature="e#2551#2595#0" expanded="true" />
           </folding>
         </state>
       </provider>
