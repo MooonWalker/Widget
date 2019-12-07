@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import java.util.Random;
@@ -17,6 +18,24 @@ import java.util.Random;
 public class TempWidget extends AppWidgetProvider
 {
     private static final String ACTION_CLICK = "ACTION_CLICK";
+
+    @Override
+    public void onReceive(Context context, Intent intent)
+    {
+        super.onReceive(context, intent);
+        if (ACTION_CLICK.equals(intent.getAction()))
+        {
+            Log.w("WidgetExample", String.valueOf(22));
+            //your onClick action is here
+            ComponentName thisWidget = new ComponentName(context, TempWidget.class);
+            int[]allWidgetIds=intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+
+            AppWidgetManager.getInstance(context)
+                    .notifyAppWidgetViewDataChanged(allWidgetIds, R.id.appwidget_text);
+
+        }
+
+    }
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId)
@@ -52,7 +71,7 @@ public class TempWidget extends AppWidgetProvider
         int[]allWidgetIds=appWidgetManager.getAppWidgetIds(thisWidget);
 
         // There may be multiple widgets active, so update all of them
-        for (int appWidgetId : appWidgetIds)
+        for (int appWidgetId : allWidgetIds)
         {
             //updateAppWidget( context, appWidgetManager, appWidgetId );
             int number = (new Random().nextInt(100));
@@ -73,11 +92,18 @@ public class TempWidget extends AppWidgetProvider
              PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0, intent,
                      PendingIntent.FLAG_UPDATE_CURRENT);
 
-             views.setOnClickPendingIntent(R.id.appwidget_text,pendingIntent);
+             views.setOnClickPendingIntent(R.id.appwidget_text,getPendingSelfIntent(context,ACTION_CLICK));
 
              // Instruct the widget manager to update the widget
              appWidgetManager.updateAppWidget( appWidgetId, views );
         }
+    }
+
+    protected PendingIntent getPendingSelfIntent(Context context, String action)
+    {
+        Intent intent = new Intent(context, getClass());
+        intent.setAction(action);
+        return PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 
     @Override
