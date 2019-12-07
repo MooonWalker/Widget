@@ -16,63 +16,51 @@ public class TempWidgetConfigureActivity extends Activity
 {
 
     private static final String PREFS_NAME = "com.moonwalker.temperature.TempWidget";
-    private static final String PREF_PREFIX_KEY = "appwidget_";
+    private static final String PREF_TITLE = "widgettitle";
+    private static final String PREF_FRQ = "updfrq";
+
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetText;
-    View.OnClickListener mOnClickListener = new View.OnClickListener()
-    {
-        public void onClick(View v)
-        {
-            final Context context = TempWidgetConfigureActivity.this;
+    EditText mUpdateFrq;
 
-            // When the button is clicked, store the string locally
-            String widgetText = mAppWidgetText.getText().toString();
-            saveTitlePref( context, mAppWidgetId, widgetText );
-
-            // It is the responsibility of the configuration activity to update the app widget
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
-            TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
-
-            // Make sure we pass back the original appWidgetId
-            Intent resultValue = new Intent();
-            resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
-            setResult( RESULT_OK, resultValue );
-            finish();
-        }
-    };
-
-    public TempWidgetConfigureActivity()
+    public TempWidgetConfigureActivity() //constructor
     {
         super();
+
     }
 
     // Write the prefix to the SharedPreferences object for this widget
-    static void saveTitlePref(Context context, int appWidgetId, String text)
+    static void savePreferences(Context context, int appWidgetId, String text, int updFrq)
     {
         SharedPreferences.Editor prefs = context.getSharedPreferences( PREFS_NAME, 0 ).edit();
-        prefs.putString( PREF_PREFIX_KEY + appWidgetId, text );
+        prefs.putString( PREF_TITLE + appWidgetId, text );
+        prefs.putInt( PREF_FRQ + appWidgetId, updFrq );
         prefs.apply();
     }
 
     // Read the prefix from the SharedPreferences object for this widget.
     // If there is no preference saved, get the default from a resource
-    static String loadTitlePref(Context context, int appWidgetId)
+    static String loadPreferences(Context context, int appWidgetId)
     {
         SharedPreferences prefs = context.getSharedPreferences( PREFS_NAME, 0 );
-        String titleValue = prefs.getString( PREF_PREFIX_KEY + appWidgetId, null );
+        String titleValue = prefs.getString( PREF_TITLE + appWidgetId, null );
+        int updFrq = prefs.getInt( PREF_FRQ+appWidgetId,60);
+
         if (titleValue != null)
         {
-            return titleValue;
-        } else
+            return titleValue+" " + updFrq;
+        }
+        else
         {
             return context.getString( R.string.appwidget_text );
         }
     }
 
-    static void deleteTitlePref(Context context, int appWidgetId)
+    static void deletePreferences(Context context, int appWidgetId)
     {
         SharedPreferences.Editor prefs = context.getSharedPreferences( PREFS_NAME, 0 ).edit();
-        prefs.remove( PREF_PREFIX_KEY + appWidgetId );
+        prefs.remove( PREF_TITLE + appWidgetId );
+        prefs.remove( PREF_FRQ + appWidgetId );
         prefs.apply();
     }
 
@@ -86,7 +74,10 @@ public class TempWidgetConfigureActivity extends Activity
         setResult( RESULT_CANCELED );
 
         setContentView( R.layout.temp_widget_configure );
-        mAppWidgetText = (EditText) findViewById( R.id.appwidget_text );
+        mAppWidgetText = findViewById( R.id.appwidget_text );
+        mUpdateFrq = findViewById( R.id.etUpdFrq );
+        mUpdateFrq.setText( "30" );
+
         findViewById( R.id.add_button ).setOnClickListener( mOnClickListener );
 
         // Find the widget id from the intent.
@@ -105,7 +96,31 @@ public class TempWidgetConfigureActivity extends Activity
             return;
         }
 
-        mAppWidgetText.setText( loadTitlePref( TempWidgetConfigureActivity.this, mAppWidgetId ) );
+        mAppWidgetText.setText( loadPreferences( TempWidgetConfigureActivity.this, mAppWidgetId ) );
     }
+
+    View.OnClickListener mOnClickListener = new View.OnClickListener()
+    {
+        public void onClick(View v)
+        {
+            final Context context = TempWidgetConfigureActivity.this;
+
+            // When the button is clicked, store the string locally
+            String widgetText = mAppWidgetText.getText().toString();
+            int updFrq = Integer.parseInt( mUpdateFrq.getText().toString());
+
+            savePreferences( context, mAppWidgetId, widgetText, updFrq );
+
+            // It is the responsibility of the configuration activity to update the app widget
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
+            TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
+
+            // Make sure we pass back the original appWidgetId
+            Intent resultValue = new Intent();
+            resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
+            setResult( RESULT_OK, resultValue );
+            finish();
+        }
+    };
 }
 
