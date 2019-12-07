@@ -16,9 +16,10 @@ public class TempWidget extends AppWidgetProvider
                                 int appWidgetId)
     {
 
-        CharSequence widgetText = TempWidgetConfigureActivity.loadTitlePref( context, appWidgetId );
+        CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
+
         views.setTextViewText( R.id.appwidget_text, widgetText );
 
         // Instruct the widget manager to update the widget
@@ -41,7 +42,7 @@ public class TempWidget extends AppWidgetProvider
         // When the user deletes the widget, delete the preference associated with it.
         for (int appWidgetId : appWidgetIds)
         {
-            TempWidgetConfigureActivity.deleteTitlePref( context, appWidgetId );
+            TempWidgetConfigureActivity.deletePreferences( context, appWidgetId );
         }
     }
 

@@ -29,7 +29,8 @@
         android:text="@string/updFrq" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/etUpdFrq"
+        android:gravity="right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
