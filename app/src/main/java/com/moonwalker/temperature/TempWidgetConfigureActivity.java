@@ -19,27 +19,8 @@ public class TempWidgetConfigureActivity extends Activity
     private static final String PREF_PREFIX_KEY = "appwidget_";
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetText;
-    View.OnClickListener mOnClickListener = new View.OnClickListener()
-    {
-        public void onClick(View v)
-        {
-            final Context context = TempWidgetConfigureActivity.this;
 
-            // When the button is clicked, store the string locally
-            String widgetText = mAppWidgetText.getText().toString();
-            saveTitlePref( context, mAppWidgetId, widgetText );
 
-            // It is the responsibility of the configuration activity to update the app widget
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
-            TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
-
-            // Make sure we pass back the original appWidgetId
-            Intent resultValue = new Intent();
-            resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
-            setResult( RESULT_OK, resultValue );
-            finish();
-        }
-    };
 
     public TempWidgetConfigureActivity()
     {
@@ -63,7 +44,8 @@ public class TempWidgetConfigureActivity extends Activity
         if (titleValue != null)
         {
             return titleValue;
-        } else
+        }
+        else
         {
             return context.getString( R.string.appwidget_text );
         }
@@ -86,7 +68,7 @@ public class TempWidgetConfigureActivity extends Activity
         setResult( RESULT_CANCELED );
 
         setContentView( R.layout.temp_widget_configure );
-        mAppWidgetText = (EditText) findViewById( R.id.appwidget_text );
+        mAppWidgetText = findViewById( R.id.appwidget_text );
         findViewById( R.id.add_button ).setOnClickListener( mOnClickListener );
 
         // Find the widget id from the intent.
@@ -107,5 +89,27 @@ public class TempWidgetConfigureActivity extends Activity
 
         mAppWidgetText.setText( loadTitlePref( TempWidgetConfigureActivity.this, mAppWidgetId ) );
     }
+
+    View.OnClickListener mOnClickListener = new View.OnClickListener()
+    {
+        public void onClick(View v)
+        {
+            final Context context = TempWidgetConfigureActivity.this;
+
+            // When the button is clicked, store the string locally
+            String widgetText = mAppWidgetText.getText().toString();
+            saveTitlePref( context, mAppWidgetId, widgetText );
+
+            // It is the responsibility of the configuration activity to update the app widget
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
+            TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
+
+            // Make sure we pass back the original appWidgetId
+            Intent resultValue = new Intent();
+            resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
+            setResult( RESULT_OK, resultValue );
+            finish();
+        }
+    };
 }
 
