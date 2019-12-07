@@ -5,22 +5,29 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
 
+import java.util.Random;
+
 /**
  * Implementation of App Widget functionality.
  * App Widget Configuration implemented in {@link TempWidgetConfigureActivity TempWidgetConfigureActivity}
  */
 public class TempWidget extends AppWidgetProvider
 {
+    private static final String ACTION_CLICK = "ACTION_CLICK";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId)
     {
+        int number = (new Random().nextInt(100));
 
         CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
+
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
 
-        views.setTextViewText( R.id.appwidget_text, widgetText );
+        //Original example coding
+        //views.setTextViewText( R.id.appwidget_text, widgetText );
+        views.setTextViewText(R.id.appwidget_text,String.valueOf(number));
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget( appWidgetId, views );
