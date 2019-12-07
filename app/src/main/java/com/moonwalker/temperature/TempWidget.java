@@ -25,14 +25,17 @@ public class TempWidget extends AppWidgetProvider
         super.onReceive(context, intent);
         if (ACTION_CLICK.equals(intent.getAction()))
         {
-            Log.w("WidgetExample", String.valueOf(22));
+
             //your onClick action is here
             ComponentName thisWidget = new ComponentName(context, TempWidget.class);
-            int[]allWidgetIds=intent.getIntArrayExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS);
+            int[]allWidgetIds=AppWidgetManager.getInstance(context).getAppWidgetIds(thisWidget);
+            Log.w("WidgetID", String.valueOf(allWidgetIds.length));
+            for (int appWidgetId : allWidgetIds)
+            {
+                Log.w("appWidgetID", String.valueOf(appWidgetId));
 
-            AppWidgetManager.getInstance(context)
-                    .notifyAppWidgetViewDataChanged(allWidgetIds, R.id.appwidget_text);
-
+                onUpdate(context,AppWidgetManager.getInstance(context),allWidgetIds);
+            }
         }
 
     }
@@ -93,7 +96,7 @@ public class TempWidget extends AppWidgetProvider
                      PendingIntent.FLAG_UPDATE_CURRENT);
 
              views.setOnClickPendingIntent(R.id.appwidget_text,getPendingSelfIntent(context,ACTION_CLICK));
-
+            Log.w("onUpdate_appWidgetID", String.valueOf(appWidgetId));
              // Instruct the widget manager to update the widget
              appWidgetManager.updateAppWidget( appWidgetId, views );
         }
