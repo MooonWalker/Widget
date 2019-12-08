@@ -31,10 +31,10 @@ public class TempWidget extends AppWidgetProvider
             //your onClick action is here
             ComponentName thisWidget = new ComponentName(context, TempWidget.class);
             int[]allWidgetIds=AppWidgetManager.getInstance(context).getAppWidgetIds(thisWidget);
-            Log.w("WidgetID", String.valueOf(allWidgetIds.length));
+            Log.w("onReceive_WidgetID", String.valueOf(allWidgetIds.length));
             for (int appWidgetId : allWidgetIds)
             {
-                Log.w("appWidgetID", String.valueOf(appWidgetId));
+                Log.w("for_appWidgetID", String.valueOf(appWidgetId));
 
                 onUpdate(context,AppWidgetManager.getInstance(context),allWidgetIds);
             }

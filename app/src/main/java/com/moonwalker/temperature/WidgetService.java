@@ -19,23 +19,30 @@ public class WidgetService extends RemoteViewsService
     }
 
     @Override
+    public int onStartCommand(Intent intent, int flags, int startId)
+    {
+        Log.d("Widgetservice", "onStartCommand");
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
     public boolean onUnbind(Intent intent)
     {
-        Log.d("Widgetservice", "onStart");
+        Log.d("Widgetservice", "onUnbind");
         return super.onUnbind(intent);
     }
 
     @Override
     public void onRebind(Intent intent)
     {
-        Log.d("Widgetservice", "onStart");
+        Log.d("Widgetservice", "onRebind");
         super.onRebind(intent);
     }
 
     @Override
     public void onTaskRemoved(Intent rootIntent)
     {
-        Log.d("Widgetservice", "onStart");
+        Log.d("Widgetservice", "onTaskRemoved");
         super.onTaskRemoved(rootIntent);
     }
 
@@ -43,17 +50,9 @@ public class WidgetService extends RemoteViewsService
     public RemoteViewsFactory onGetViewFactory(Intent intent)
     {
 
-        Log.w("Widget_Widgetservice", "service");
+        Log.w("Widgetservice", "onGetViewFactory");
         return new DataProvider(this, intent);
 
     }
-
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId)
-    {
-        Log.d("Widgetservice", "onStart");
-        return super.onStartCommand(intent, flags, startId);
-    }
-
 
 }
