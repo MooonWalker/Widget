@@ -11,6 +11,8 @@ import android.widget.RemoteViews;
 
 import java.util.Random;
 
+import androidx.annotation.NonNull;
+
 /**
  * Implementation of App Widget functionality.
  * App Widget Configuration implemented in {@link TempWidgetConfigureActivity TempWidgetConfigureActivity}
@@ -83,10 +85,8 @@ public class TempWidget extends AppWidgetProvider
 
              // Construct the RemoteViews object
              RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
-
-             //Original example coding
-             //views.setTextViewText( R.id.appwidget_text, widgetText );
              views.setTextViewText(R.id.appwidget_text,String.valueOf(number));
+             setRemoteAdapter(context,views);
 
              Intent intent= new Intent(context,TempWidget.class);
              intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -100,6 +100,7 @@ public class TempWidget extends AppWidgetProvider
              // Instruct the widget manager to update the widget
              appWidgetManager.updateAppWidget( appWidgetId, views );
         }
+        super.onUpdate(context, appWidgetManager,appWidgetIds);
     }
 
     protected PendingIntent getPendingSelfIntent(Context context, String action)
@@ -130,5 +131,11 @@ public class TempWidget extends AppWidgetProvider
     {
         // Enter relevant functionality for when the last widget is disabled
     }
+
+    private static void setRemoteAdapter(Context context, @NonNull final RemoteViews views)
+    {
+        views.setRemoteAdapter(R.id.appwidget_text, new Intent(context,WidgetService.class));
+    }
+
 }
 
