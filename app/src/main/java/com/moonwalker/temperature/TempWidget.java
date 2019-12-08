@@ -13,10 +13,7 @@ import java.util.Random;
 
 import androidx.annotation.NonNull;
 
-/**
- * Implementation of App Widget functionality.
- * App Widget Configuration implemented in {@link TempWidgetConfigureActivity TempWidgetConfigureActivity}
- */
+
 public class TempWidget extends AppWidgetProvider
 {
     private static final String ACTION_CLICK = "ACTION_CLICK";
@@ -28,10 +25,9 @@ public class TempWidget extends AppWidgetProvider
         if (ACTION_CLICK.equals(intent.getAction()))
         {
 
-            //your onClick action is here
             ComponentName thisWidget = new ComponentName(context, TempWidget.class);
             int[]allWidgetIds=AppWidgetManager.getInstance(context).getAppWidgetIds(thisWidget);
-            Log.w("onReceive_WidgetID", String.valueOf(allWidgetIds.length));
+
             for (int appWidgetId : allWidgetIds)
             {
                 Log.w("for_appWidgetID", String.valueOf(appWidgetId));
@@ -60,8 +56,7 @@ public class TempWidget extends AppWidgetProvider
           intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
           intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 //
-         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0, intent,
-                PendingIntent.FLAG_UPDATE_CURRENT);
+
 //
          Intent intent2 = new Intent(context, TempWidget.class);
          intent2.setAction(ACTION_CLICK);

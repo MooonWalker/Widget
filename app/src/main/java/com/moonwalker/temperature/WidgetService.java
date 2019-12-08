@@ -8,6 +8,8 @@ import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import java.util.Random;
+
 import androidx.annotation.Nullable;
 
 public class WidgetService extends RemoteViewsService
@@ -34,8 +36,11 @@ public class WidgetService extends RemoteViewsService
     public int onStartCommand(Intent intent, int flags, int startId)
     {
         Log.d("Widgetservice", "onStartCommand");
+        int rndNumber = (new Random().nextInt(100));
+        String lastUpdate = "R: "+rndNumber;
+
         RemoteViews view = new RemoteViews(getPackageName(), R.layout.temp_widget);
-        view.setTextViewText(R.id.appwidget_text, "lastUpdate");
+        view.setTextViewText(R.id.appwidget_text, lastUpdate);
         ComponentName theWidget = new ComponentName(this, TempWidget.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(this);
         manager.updateAppWidget(theWidget, view);
