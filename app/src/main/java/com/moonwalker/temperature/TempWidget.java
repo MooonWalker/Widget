@@ -86,7 +86,7 @@ public class TempWidget extends AppWidgetProvider
              // Construct the RemoteViews object
              RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
              views.setTextViewText(R.id.appwidget_text,String.valueOf(number));
-             setRemoteAdapter(context,views);
+             setRemoteAdapter(context,views,appWidgetId);
 
              Intent intent= new Intent(context,TempWidget.class);
              intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -132,9 +132,13 @@ public class TempWidget extends AppWidgetProvider
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    private static void setRemoteAdapter(Context context, @NonNull final RemoteViews views)
+    private static void setRemoteAdapter(Context context, @NonNull final RemoteViews views, int appWidgetId)
     {
-        views.setRemoteAdapter(R.id.appwidget_text, new Intent(context,WidgetService.class));
+        Log.w("TempWidget", "setRemoteAdapter");
+        Intent intent= new Intent(context,WidgetService.class);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
+        views.setRemoteAdapter(R.id.appwidget_text, intent);
+        context.startService(intent);
     }
 
 }

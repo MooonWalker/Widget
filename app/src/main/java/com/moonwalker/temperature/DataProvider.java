@@ -2,6 +2,7 @@ package com.moonwalker.temperature;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -22,6 +23,7 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public void onCreate()
     {
+        Log.w("Dataprovider", "onCreate");
         initData();
     }
 
@@ -46,6 +48,7 @@ public class DataProvider implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public RemoteViews getViewAt(int position)
     {
+        Log.w("Dataprovider", "getViewAt");
         RemoteViews view= new RemoteViews(mContext.getPackageName(), R.layout.temp_widget);
         view.setTextViewText(R.id.appwidget_text,"kaka");
 
