@@ -63,11 +63,10 @@ public class TempWidget extends AppWidgetProvider
          PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 //
-        Intent intent2 = new Intent(context, TempWidget.class);
-        intent2.setAction(ACTION_CLICK);
-        PendingIntent.getBroadcast(context, 0, intent2, 0);
-
-        views.setOnClickPendingIntent(R.id.appwidget_text,PendingIntent.getBroadcast(context,0,intent2,0));
+         Intent intent2 = new Intent(context, TempWidget.class);
+         intent2.setAction(ACTION_CLICK);
+         PendingIntent.getBroadcast(context, 0, intent2, 0);
+         views.setOnClickPendingIntent(R.id.appwidget_text,PendingIntent.getBroadcast(context,0,intent2,0));
 //
          // Instruct the widget manager to update the widget
          appWidgetManager.updateAppWidget( appWidgetId, views );
