@@ -47,26 +47,30 @@ public class TempWidget extends AppWidgetProvider
     {
 //        int number = (new Random().nextInt(100));
 //
-//        CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
+          CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
 //
 //        // Construct the RemoteViews object
-//        RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
+          RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
 //
 //        //Original example coding
-//        //views.setTextViewText( R.id.appwidget_text, widgetText );
-//        views.setTextViewText(R.id.appwidget_text,String.valueOf(number));
+          views.setTextViewText( R.id.appwidget_text, widgetText );
+
 //
-//        Intent intent= new Intent(context,TempWidget.class);
-//        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-//        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+          Intent intent= new Intent(context,TempWidget.class);
+          intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+          intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 //
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0, intent,
-//                PendingIntent.FLAG_UPDATE_CURRENT);
+         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0, intent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
 //
-//        views.setOnClickPendingIntent(R.id.appwidget_text,pendingIntent);
+        Intent intent2 = new Intent(context, TempWidget.class);
+        intent2.setAction(ACTION_CLICK);
+        PendingIntent.getBroadcast(context, 0, intent2, 0);
+
+        views.setOnClickPendingIntent(R.id.appwidget_text,PendingIntent.getBroadcast(context,0,intent2,0));
 //
-//        // Instruct the widget manager to update the widget
-//        appWidgetManager.updateAppWidget( appWidgetId, views );
+         // Instruct the widget manager to update the widget
+         appWidgetManager.updateAppWidget( appWidgetId, views );
     }
 
     @Override
