@@ -44,12 +44,21 @@ public class TempWidget extends AppWidgetProvider
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId)
     {
-
+        PendingIntent service=null;
+        Log.w("updateAppWidget", String.valueOf(appWidgetId));
           CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
           RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
 
           views.setTextViewText( R.id.appwidget_text, widgetText );
+        final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        final Intent alarmIntent = new Intent(context, WidgetService.class);
 
+        if(service==null)
+        {
+            service = PendingIntent.getService(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+        }
+        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
+                SystemClock.elapsedRealtime(), 60000, service);
           Intent intent= new Intent(context,TempWidget.class);
           intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
           intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
