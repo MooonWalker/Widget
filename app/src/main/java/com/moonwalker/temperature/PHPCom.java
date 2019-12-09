@@ -4,11 +4,9 @@ package com.moonwalker.temperature;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import android.R.bool;
-import android.app.Activity;
+
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.EditText;
@@ -43,12 +41,12 @@ public class PHPCom
     public String execute()
     {
         IoTData stufftosend = new IoTData();
-        new UploadStatistics().execute(stufftosend);
+        new GetIoTDataTask().execute(stufftosend);
         return sendwascorrect;
     }
 //=============================================================================================
-    //class UploadStatistics extends AsyncTask<List<SessionH>, String, String>
-    class UploadStatistics extends AsyncTask<IoTData, String, String>
+    //class GetIoTDataTask extends AsyncTask<List<SessionH>, String, String>
+    class GetIoTDataTask extends AsyncTask<IoTData, String, String>
     {
         Boolean running;
         @Override
@@ -171,8 +169,7 @@ public class PHPCom
             }
             if (s_success.size() > 0)
             {
-                DatabaseHandler db = new DatabaseHandler(ctx);
-                db.flagSessionsSended(s_success);
+
             }
 
 
