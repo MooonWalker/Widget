@@ -92,8 +92,7 @@ public class WidgetService extends RemoteViewsService
         NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         if (mobileNetwork != null && mobileNetwork.isConnected())
         {
-            return true;
-        }
+            return true;        }
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnected();
