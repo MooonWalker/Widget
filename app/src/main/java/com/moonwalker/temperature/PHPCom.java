@@ -1,14 +1,9 @@
 package com.moonwalker.temperature;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.R.bool;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -17,6 +12,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.EditText;
+
+import com.android.volley.Request;
 
 public class PHPCom
 {
@@ -30,9 +27,9 @@ public class PHPCom
     Context ctx;
     String sendwascorrect= Boolean.TRUE.toString();
 
-    //private static String url_create_session = "http://localhost/insertsession.php";
-    private static String url_create_session = "http://gongfucha.info/insertsession.php";
-    private static String url_create_brewing = "http://gongfucha.info/insertsessiond.php";
+    //private static String url_get_data = "http://localhost/insertsession.php";
+    private static String url_get_data = "http://somejourney.info/insertsession.php";
+
 
     // JSON Node names
     private static final String TAG_SUCCESS = "success";
@@ -43,15 +40,15 @@ public class PHPCom
         ctx=_ctx;
     }
 
-    public String execute(List<SessionH> sessions, List<BrewingH> brewings, String uuid)
+    public String execute()
     {
-        HSessionBrew stufftosend = new HSessionBrew(sessions, brewings, uuid);
+        IoTData stufftosend = new IoTData();
         new UploadStatistics().execute(stufftosend);
         return sendwascorrect;
     }
-
+//=============================================================================================
     //class UploadStatistics extends AsyncTask<List<SessionH>, String, String>
-    class UploadStatistics extends AsyncTask<HSessionBrew, String, String>
+    class UploadStatistics extends AsyncTask<IoTData, String, String>
     {
         Boolean running;
         @Override
@@ -75,7 +72,7 @@ public class PHPCom
         }
 
         // protected String doInBackground(List<SessionH>... sessions)
-        protected String doInBackground(HSessionBrew... stufftosend)
+        protected String doInBackground(IoTData... stufftosend)
         {
 
             String sessionid = null;
@@ -106,8 +103,7 @@ public class PHPCom
                 params.add(new BasicNameValuePair("sessiondate",
                         sessiondate));
 
-                JSONObject json = jsonParser.makeHttpRequest(
-                        url_create_session, "POST", params);
+                JSONObject json = jsonParser.makeHttpRequest(url_get_data, Request.Method.GET, params);
                 if (json == null)
                 {
                     cancel(true);
@@ -188,8 +184,6 @@ public class PHPCom
 
             // pDialog.dismiss();
         }
-
-
 
     }
 }

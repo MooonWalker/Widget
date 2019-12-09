@@ -2,7 +2,16 @@ package com.moonwalker.temperature;
 
 
 
+import android.content.Context;
 import android.util.Log;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpResponse;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,47 +20,82 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
-import org.apache.http.*;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONParser
 {
+    public static final String TAG = "TempWidget";
     static InputStream is = null;
     static JSONObject jObj = null;
     static String json = "";
+    Context context;
 
     // constructor
     public JSONParser()
     {
+        super();
+    }
 
+    public JSONParser(Context ctx)
+    {
+        super();
+        context =ctx;
     }
 
     // function get json from url
     // by making HTTP POST or GET mehtod
-    public JSONObject makeHttpRequest(String url, String method,
+    public JSONObject makeHttpRequest(String url, int method,
                                       List<NameValuePair> params)
     {
-
         // Making HTTP request
-        try {
-
-            // check for request method
-            if(method == "POST")
+        try
+        {
+            if(method == Request.Method.POST)
             {
-                // request method is POST
-                // defaultHttpClient
-                DefaultHttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(url);
-                httpPost.setEntity(new UrlEncodedFormEntity(params));
+//                DefaultHttpClient httpClient = new DefaultHttpClient();
+//                HttpPost httpPost = new HttpPost(url);
+//                httpPost.setEntity(new UrlEncodedFormEntity(params));
+//
+//                HttpResponse httpResponse = httpClient.execute(httpPost);
+//                HttpEntity httpEntity = httpResponse.getEntity();
+//                is = httpEntity.getContent();
+            }
+            else if(method == Request.Method.GET)
+            {
+                RequestQueue requestQueue= Volley.newRequestQueue( context );
+                StringRequest stringRequest = new StringRequest( Request.Method.GET, url,
+                        new Response.Listener<String>()
+                        {
+                            @Override
+                            public void onResponse(String response)
+                            {
+                                // Display the first 500 characters of the response string.
+                                textView.setText("Response is: "+ response.substring(0,500));
+                            }
+                        },
+                        new Response.ErrorListener()
+                        {
+                            @Override
+                            public void onErrorResponse(VolleyError error)
+                            {
+                                textView.setText("That didn't work!");
+                            }
+                });
 
-                HttpResponse httpResponse = httpClient.execute(httpPost);
-                HttpEntity httpEntity = httpResponse.getEntity();
-                is = httpEntity.getContent();
+                stringRequest.setTag(TAG);
+//              Add the request to the RequestQueue.
+                requestQueue.add(stringRequest);
 
-            }else if(method == "GET"){
-                // request method is GET
+//                @Override
+//                protected void onStop () {
+//                super.onStop();
+//                if (requestQueue != null) {
+//                    requestQueue.cancelAll(TAG);
+//                }
+//            }
+
+
                 DefaultHttpClient httpClient = new DefaultHttpClient();
                 String paramString = URLEncodedUtils.format(params, "utf-8");
                 url += "?" + paramString;
