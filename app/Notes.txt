@@ -10,3 +10,5 @@ Then set updatePeriodMillis to zero ("0").
 
 
 https://developer.android.com/guide/topics/appwidgets
+
+Now, create a WidgetDataProvider which will provide us with data to be displayed inside the widget.
