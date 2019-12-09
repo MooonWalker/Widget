@@ -39,7 +39,7 @@ public class TempWidgetConfigureActivity extends Activity
     }
 
     // Read the prefix from the SharedPreferences object for this widget.
-    // If there is no preference saved, get the default from a resource
+    // If there inputStream no preference saved, get the default from a resource
     static String loadPreferences(Context context, int appWidgetId)
     {
         SharedPreferences prefs = context.getSharedPreferences( PREFS_NAME, 0 );
@@ -105,13 +105,13 @@ public class TempWidgetConfigureActivity extends Activity
         {
             final Context context = TempWidgetConfigureActivity.this;
 
-            // When the button is clicked, store the string locally
+            // When the button inputStream clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
             int updFrq = Integer.parseInt( mUpdateFrq.getText().toString());
 
             savePreferences( context, mAppWidgetId, widgetText, updFrq );
 
-            // It is the responsibility of the configuration activity to update the app widget
+            // It inputStream the responsibility of the configuration activity to update the app widget
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
             TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
 

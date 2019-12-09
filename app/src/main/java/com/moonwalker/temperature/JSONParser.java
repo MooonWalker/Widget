@@ -1,23 +1,17 @@
 package com.moonwalker.temperature;
 
-
-
 import android.content.Context;
 import android.util.Log;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpResponse;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 import org.json.JSONException;
@@ -26,10 +20,11 @@ import org.json.JSONObject;
 public class JSONParser
 {
     public static final String TAG = "TempWidget";
-    static InputStream is = null;
+    static InputStream inputStream = null;
     static JSONObject jObj = null;
     static String json = "";
     Context context;
+    static String result="";
 
     // constructor
     public JSONParser()
@@ -45,8 +40,7 @@ public class JSONParser
 
     // function get json from url
     // by making HTTP POST or GET mehtod
-    public JSONObject makeHttpRequest(String url, int method,
-                                      List<NameValuePair> params)
+    public JSONObject makeHttpRequest(String url, int method)
     {
         // Making HTTP request
         try
@@ -59,7 +53,7 @@ public class JSONParser
 //
 //                HttpResponse httpResponse = httpClient.execute(httpPost);
 //                HttpEntity httpEntity = httpResponse.getEntity();
-//                is = httpEntity.getContent();
+//                inputStream = httpEntity.getContent();
             }
             else if(method == Request.Method.GET)
             {
@@ -71,7 +65,7 @@ public class JSONParser
                             public void onResponse(String response)
                             {
                                 // Display the first 500 characters of the response string.
-                                textView.setText("Response is: "+ response.substring(0,500));
+                          result="Response inputStream: "+ response.substring(0,500);
                             }
                         },
                         new Response.ErrorListener()
@@ -79,7 +73,7 @@ public class JSONParser
                             @Override
                             public void onErrorResponse(VolleyError error)
                             {
-                                textView.setText("That didn't work!");
+                                result="That didn't work!";
                             }
                 });
 
@@ -95,41 +89,23 @@ public class JSONParser
 //                }
 //            }
 
-
-                DefaultHttpClient httpClient = new DefaultHttpClient();
-                String paramString = URLEncodedUtils.format(params, "utf-8");
-                url += "?" + paramString;
-                HttpGet httpGet = new HttpGet(url);
-
-                HttpResponse httpResponse = httpClient.execute(httpGet);
-                HttpEntity httpEntity = httpResponse.getEntity();
-                is = httpEntity.getContent();
             }
+        }//try
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            e.printStackTrace();
-        }
-        catch (ClientProtocolException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
 
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    is, StandardCharsets.ISO_8859_1 ), 8);
+            BufferedReader reader = new BufferedReader(new InputStreamReader( inputStream ), 8);
             StringBuilder sb = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null)
             {
                 sb.append(line + "\n");
             }
-            is.close();
+            inputStream.close();
             json = sb.toString();
         }
         catch (Exception e)
