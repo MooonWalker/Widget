@@ -20,7 +20,7 @@ public class FetchData extends JobService
     @Override
     public boolean onStartJob(JobParameters jobParameters)
     {
-        Log.d("FetchData", "onStartJob");
+        Log.d("FetchData.", "onStartJob");
         //if(hasConnection()) ioTData=pollWeb();
         return false;
     }
@@ -28,7 +28,7 @@ public class FetchData extends JobService
     @Override
     public boolean onStopJob(JobParameters jobParameters)
     {
-        Log.d("FetchData", "onStopJob");
+        Log.d("FetchData.", "onStopJob");
         return false;
     }
 

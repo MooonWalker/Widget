@@ -31,7 +31,7 @@ public class WidgetService extends RemoteViewsService
 
     public WidgetService()
     {
-        Log.d("Widgetservice", "constructor");
+        Log.d("Widgetservice.", "constructor");
 
     }
 
@@ -45,7 +45,7 @@ public class WidgetService extends RemoteViewsService
     @Override
     public void onCreate()
     {
-        Log.d("Widgetservice", "onCreate");
+        Log.d("Widgetservice.", "onCreate");
         super.onCreate();
 
     }
@@ -53,7 +53,7 @@ public class WidgetService extends RemoteViewsService
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
-        Log.d("Widgetservice", "onStartCommand");
+        Log.d("Widgetservice.", "onStartCommand");
         ioTData=new IoTData();
 
         int rndNumber = (new Random().nextInt(100));
@@ -78,21 +78,21 @@ public class WidgetService extends RemoteViewsService
     @Override
     public boolean onUnbind(Intent intent)
     {
-        Log.d("Widgetservice", "onUnbind");
+        Log.d("Widgetservice.", "onUnbind");
         return super.onUnbind(intent);
     }
 
     @Override
     public void onRebind(Intent intent)
     {
-        Log.d("Widgetservice", "onRebind");
+        Log.d("Widgetservice.", "onRebind");
         super.onRebind(intent);
     }
 
     @Override
     public void onTaskRemoved(Intent rootIntent)
     {
-        Log.d("Widgetservice", "onTaskRemoved");
+        Log.d("Widgetservice.", "onTaskRemoved");
         super.onTaskRemoved(rootIntent);
     }
 
@@ -100,7 +100,7 @@ public class WidgetService extends RemoteViewsService
     public RemoteViewsFactory onGetViewFactory(Intent intent)
     {
 
-        Log.w("Widgetservice", "onGetViewFactory");
+        Log.d("Widgetservice.", "onGetViewFactory");
         return new DataProvider(this, intent);
 
     }

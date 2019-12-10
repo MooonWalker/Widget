@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -77,7 +78,7 @@ public class TempWidgetConfigureActivity extends Activity
         mAppWidgetText = findViewById( R.id.appwidget_text );
         mUpdateFrq = findViewById( R.id.etUpdFrq );
         mUpdateFrq.setText( "30" );
-
+        Log.d ("TempWidgetConfigureActivity.", "onCreate");
         findViewById( R.id.add_button ).setOnClickListener( mOnClickListener );
 
         // Find the widget id from the intent.

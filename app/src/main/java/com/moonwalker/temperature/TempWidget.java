@@ -38,7 +38,7 @@ public class TempWidget extends AppWidgetProvider
 
             for (int appWidgetId : allWidgetIds)
             {
-                Log.w("for_appWidgetID", String.valueOf(appWidgetId));
+                Log.d("TempWidget.", "onReceive");
 
                 onUpdate(context,AppWidgetManager.getInstance(context),allWidgetIds);
             }
@@ -49,25 +49,23 @@ public class TempWidget extends AppWidgetProvider
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId)
     {
-        PendingIntent service=null;
-        Log.w("updateAppWidget", String.valueOf(appWidgetId));
-        CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
-        RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
+       Log.d("TempWidget.", "updateAppWidget");
 
+        CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
+
+        RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
         views.setTextViewText( R.id.appwidget_text, widgetText );
 
         //TODO Jobscheduler
-
-
 
         Intent intent= new Intent(context,TempWidget.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 
-         Intent intent2 = new Intent(context, TempWidget.class);
-         intent2.setAction(ACTION_CLICK);
-         PendingIntent.getBroadcast(context, 0, intent2, 0);
-         views.setOnClickPendingIntent(R.id.appwidget_text,PendingIntent.getBroadcast(context,0,intent2,0));
+        Intent intent2 = new Intent(context, TempWidget.class);
+        intent2.setAction(ACTION_CLICK);
+        PendingIntent.getBroadcast(context, 0, intent2, 0);
+        views.setOnClickPendingIntent(R.id.appwidget_text,PendingIntent.getBroadcast(context,0,intent2,0));
 
          // Instruct the widget manager to update the widget
          appWidgetManager.updateAppWidget( appWidgetId, views );
@@ -76,13 +74,14 @@ public class TempWidget extends AppWidgetProvider
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
     {
+        Log.d("TempWidget.", "onUpdate");
         //TODO Jobscheduler
         ComponentName thisWidget = new ComponentName(context, TempWidget.class);
         ComponentName serviceName = new ComponentName( context, FetchData.class );
         JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
         builder.setMinimumLatency( 1*1000 );
         builder.setOverrideDeadline(3*1000  );
-        JobScheduler jobScheduler = (JobScheduler)context.getApplicationContext().getSystemService(JOB_SCHEDULER_SERVICE);
+        JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
         jobScheduler.schedule(builder.build());
 
         int[]allWidgetIds=appWidgetManager.getAppWidgetIds(thisWidget);
@@ -105,7 +104,6 @@ public class TempWidget extends AppWidgetProvider
              PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
              views.setOnClickPendingIntent(R.id.appwidget_text,getPendingSelfIntent(context,ACTION_CLICK));
-            Log.w("onUpdate_appWidgetID", String.valueOf(appWidgetId));
              // Instruct the widget manager to update the widget
              appWidgetManager.updateAppWidget( appWidgetId, views );
         }
@@ -143,7 +141,7 @@ public class TempWidget extends AppWidgetProvider
 
     private static void setRemoteAdapter(Context context, @NonNull final RemoteViews views, int appWidgetId)
     {
-        Log.w("TempWidget", "setRemoteAdapter");
+        Log.w("TempWidget.", "setRemoteAdapter");
         Intent intent= new Intent(context,WidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
         views.setRemoteAdapter(R.id.appwidget_text, intent);
