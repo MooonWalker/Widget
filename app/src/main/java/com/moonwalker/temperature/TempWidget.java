@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -46,10 +47,12 @@ public class TempWidget extends AppWidgetProvider
     {
         PendingIntent service=null;
         Log.w("updateAppWidget", String.valueOf(appWidgetId));
-          CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
-          RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
+        CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
+        RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
 
-          views.setTextViewText( R.id.appwidget_text, widgetText );
+        views.setTextViewText( R.id.appwidget_text, widgetText );
+
+        //TODO Jobscheduler
         final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         final Intent alarmIntent = new Intent(context, WidgetService.class);
 
@@ -59,9 +62,9 @@ public class TempWidget extends AppWidgetProvider
         }
         alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
                 SystemClock.elapsedRealtime(), 60000, service);
-          Intent intent= new Intent(context,TempWidget.class);
-          intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-          intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
+        Intent intent= new Intent(context,TempWidget.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 
          Intent intent2 = new Intent(context, TempWidget.class);
          intent2.setAction(ACTION_CLICK);
@@ -75,6 +78,7 @@ public class TempWidget extends AppWidgetProvider
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
     {
+        //TODO Jobscheduler
         ComponentName thisWidget = new ComponentName(context, TempWidget.class);
         int[]allWidgetIds=appWidgetManager.getAppWidgetIds(thisWidget);
         final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -147,7 +151,16 @@ public class TempWidget extends AppWidgetProvider
         Intent intent= new Intent(context,WidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
         views.setRemoteAdapter(R.id.appwidget_text, intent);
-        context.startService(intent);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        {
+            context.startService(intent);
+        }
+        else
+        {
+            context.startService(intent);
+        }
+
     }
 
 }

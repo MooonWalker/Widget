@@ -1,5 +1,6 @@
 package com.moonwalker.temperature;
 
+import android.app.Notification;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -45,6 +46,7 @@ public class WidgetService extends RemoteViewsService
     {
         Log.d("Widgetservice", "onCreate");
         super.onCreate();
+
     }
 
     @Override
@@ -62,9 +64,9 @@ public class WidgetService extends RemoteViewsService
         AppWidgetManager manager = AppWidgetManager.getInstance(this);
         manager.updateAppWidget(theWidget, view);
 
-        if(hasConnection()) ioTData=pollWeb();
+        //if(hasConnection()) ioTData=pollWeb();
 
-        stopSelf();
+        //stopSelf();
 
         return super.onStartCommand(intent, flags, startId);
     }
