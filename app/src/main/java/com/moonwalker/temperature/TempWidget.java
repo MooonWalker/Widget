@@ -141,7 +141,7 @@ public class TempWidget extends AppWidgetProvider
 
     private static void setRemoteAdapter(Context context, @NonNull final RemoteViews views, int appWidgetId)
     {
-        Log.w("TempWidget.", "setRemoteAdapter");
+        Log.d("TempWidget.", "setRemoteAdapter");
         Intent intent= new Intent(context,WidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
         views.setRemoteAdapter(R.id.appwidget_text, intent);
