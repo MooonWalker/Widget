@@ -32,6 +32,7 @@ public class WidgetService extends RemoteViewsService
     public WidgetService()
     {
         Log.d("Widgetservice", "constructor");
+
     }
 
     @Nullable
@@ -66,7 +67,7 @@ public class WidgetService extends RemoteViewsService
 
         //if(hasConnection()) ioTData=pollWeb();
 
-        //stopSelf();
+        stopSelf();
 
         return super.onStartCommand(intent, flags, startId);
     }

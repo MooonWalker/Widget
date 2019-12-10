@@ -2,6 +2,8 @@ package com.moonwalker.temperature;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
@@ -15,6 +17,8 @@ import android.widget.RemoteViews;
 import java.util.Random;
 
 import androidx.annotation.NonNull;
+
+import static android.content.Context.JOB_SCHEDULER_SERVICE;
 
 
 public class TempWidget extends AppWidgetProvider
@@ -53,15 +57,12 @@ public class TempWidget extends AppWidgetProvider
         views.setTextViewText( R.id.appwidget_text, widgetText );
 
         //TODO Jobscheduler
-        final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        final Intent alarmIntent = new Intent(context, WidgetService.class);
 
         if(service==null)
         {
-            service = PendingIntent.getService(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
         }
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
-                SystemClock.elapsedRealtime(), 60000, service);
+
         Intent intent= new Intent(context,TempWidget.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
@@ -80,16 +81,14 @@ public class TempWidget extends AppWidgetProvider
     {
         //TODO Jobscheduler
         ComponentName thisWidget = new ComponentName(context, TempWidget.class);
-        int[]allWidgetIds=appWidgetManager.getAppWidgetIds(thisWidget);
-        final AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        final Intent alarmIntent = new Intent(context, WidgetService.class);
+        ComponentName serviceName = new ComponentName( context, FetchData.class );
+        JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
+        builder.setMinimumLatency( 1*1000 );
+        builder.setOverrideDeadline(3*1000  );
+        JobScheduler jobScheduler = (JobScheduler)context.getApplicationContext().getSystemService(JOB_SCHEDULER_SERVICE);
+        jobScheduler.schedule(builder.build());
 
-        if(service==null)
-        {
-            service = PendingIntent.getService(context, 0, alarmIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-        }
-        alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME,
-                SystemClock.elapsedRealtime(), 60000, service);
+        int[]allWidgetIds=appWidgetManager.getAppWidgetIds(thisWidget);
 
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : allWidgetIds)
