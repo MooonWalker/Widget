@@ -65,41 +65,15 @@ public class WidgetService extends RemoteViewsService
         AppWidgetManager manager = AppWidgetManager.getInstance(this);
         manager.updateAppWidget(theWidget, view);
 
-        //if(hasConnection()) ioTData=pollWeb();
+
 
         stopSelf();
 
-        return super.onStartCommand(intent, flags, startId);
+        final int i = 0;
+        return i;
     }
 
-    private IoTData pollWeb()
-    {
-        IoTData result= new IoTData();
-        PHPCom getPHP =new PHPCom(this);
-        getPHP.execute();
 
-        return result;
-    }
-
-    private boolean hasConnection()
-    {
-        ConnectivityManager cm = (ConnectivityManager) getBaseContext().getSystemService(
-                Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifiNetwork != null && wifiNetwork.isConnected())
-        {
-            return true;
-        }
-
-        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (mobileNetwork != null && mobileNetwork.isConnected())
-        {
-            return true;        }
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null && activeNetwork.isConnected();
-    }
 
     @Override
     public boolean onUnbind(Intent intent)

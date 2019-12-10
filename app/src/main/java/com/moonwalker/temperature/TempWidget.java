@@ -58,10 +58,7 @@ public class TempWidget extends AppWidgetProvider
 
         //TODO Jobscheduler
 
-        if(service==null)
-        {
 
-        }
 
         Intent intent= new Intent(context,TempWidget.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
