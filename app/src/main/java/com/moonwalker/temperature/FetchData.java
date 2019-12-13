@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.IBinder;
+import android.os.PersistableBundle;
 import android.util.Log;
 
 public class FetchData extends JobService
@@ -21,6 +22,9 @@ public class FetchData extends JobService
     public boolean onStartJob(JobParameters jobParameters)
     {
         Log.d("FetchData.", "onStartJob");
+        PersistableBundle jobExtras = jobParameters.getExtras();
+        Log.d ("Fetchdata.onStartJob", jobExtras.getString( "ID" ));
+
         //if(hasConnection()) ioTData=pollWeb();
         return false;
     }
@@ -29,7 +33,7 @@ public class FetchData extends JobService
     public boolean onStopJob(JobParameters jobParameters)
     {
         Log.d("FetchData.", "onStopJob");
-        return false;
+        return true;
     }
 
     private IoTData pollWeb()

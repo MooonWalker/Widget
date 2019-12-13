@@ -29,10 +29,10 @@ public class TempWidget extends AppWidgetProvider
     @Override
     public void onReceive(Context context, Intent intent)
     {
+        Log.d("TempWidget.onReceive.intentaction", String.valueOf( intent.getAction()));
         super.onReceive(context, intent);
         if (ACTION_CLICK.equals(intent.getAction()))
         {
-
             ComponentName thisWidget = new ComponentName(context, TempWidget.class);
             int[]allWidgetIds=AppWidgetManager.getInstance(context).getAppWidgetIds(thisWidget);
 
@@ -79,8 +79,11 @@ public class TempWidget extends AppWidgetProvider
         ComponentName thisWidget = new ComponentName(context, TempWidget.class);
         ComponentName serviceName = new ComponentName( context, FetchData.class );
         JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
-        builder.setMinimumLatency( 1*1000 );
-        builder.setOverrideDeadline(3*1000  );
+        //builder.setMinimumLatency( 1*1000 ); //delay before scheduling
+        //builder.setOverrideDeadline(3*1000  );
+        builder.setPeriodic( 60000 );
+        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
+
         JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
         jobScheduler.schedule(builder.build());
 

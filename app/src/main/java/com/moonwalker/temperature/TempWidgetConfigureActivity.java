@@ -1,11 +1,15 @@
 package com.moonwalker.temperature;
 
 import android.app.Activity;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -124,6 +128,19 @@ public class TempWidgetConfigureActivity extends Activity
             // Make sure we pass back the original appWidgetId
             Intent resultValue = new Intent();
             resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
+            ComponentName serviceName = new ComponentName( context, FetchData.class );
+            PersistableBundle jobExtras = new PersistableBundle(  );
+            jobExtras.putString( "ID", "kaka" );
+            JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
+            builder.setMinimumLatency(1); //delay before scheduling
+            builder.setOverrideDeadline(1);
+            builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
+            builder.setExtras( jobExtras );
+
+            JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+            jobScheduler.schedule(builder.build());
+//TODO setextras to the job?
+
             setResult( RESULT_OK, resultValue );
             finish();
         }
