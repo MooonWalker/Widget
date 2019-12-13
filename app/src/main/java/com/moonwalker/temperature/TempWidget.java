@@ -95,7 +95,7 @@ public class TempWidget extends AppWidgetProvider
              // Construct the RemoteViews object
              RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
              views.setTextViewText(R.id.appwidget_text,String.valueOf(number));
-             setRemoteAdapter(context,views,appWidgetId);
+             setRemoteAdapter(context,views,appWidgetId); //-------setremoteadapter
 
              Intent intent= new Intent(context,TempWidget.class);
              intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -146,14 +146,14 @@ public class TempWidget extends AppWidgetProvider
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
         views.setRemoteAdapter(R.id.appwidget_text, intent);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            context.startService(intent);
-        }
-        else
-        {
-            context.startService(intent);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+//        {
+//            context.startService(intent);
+//        }
+//        else
+//        {
+//            context.startService(intent);
+//        }
 
     }
 

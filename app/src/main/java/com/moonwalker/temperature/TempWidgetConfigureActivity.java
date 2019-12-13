@@ -83,25 +83,7 @@ public class TempWidgetConfigureActivity extends Activity
         Log.d ("TempWidgetConfigureActivity.", "after set onclik listener");
 
         // Find the widget id from the intent.
-        Intent intent = getIntent();
-        Log.d ("TempWidgetConfigureActivity.", "after getintent");
-        Bundle extras = intent.getExtras();
-        Log.d ("TempWidgetConfigureActivity.", "after getbundle");
-        if (extras != null)
-        {
-            mAppWidgetId = extras.getInt(
-                    AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID );
-            Log.d ("TempWidgetConfigureActivity.", "after getwidgetid");
-        }
 
-        // If this activity was started with an intent without an app widget ID, finish with an error.
-        if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID)
-        {
-            finish();
-            return;
-        }
-
-        mAppWidgetText.setText( loadPreferences( TempWidgetConfigureActivity.this, mAppWidgetId ) );
     }
 
     View.OnClickListener mOnClickListener = new View.OnClickListener()
@@ -109,7 +91,25 @@ public class TempWidgetConfigureActivity extends Activity
         public void onClick(View v)
         {
             final Context context = TempWidgetConfigureActivity.this;
+            Intent intent = getIntent();
+            Log.d ("TempWidgetConfigureActivity.", "after getintent");
+            Bundle extras = intent.getExtras();
+            Log.d ("TempWidgetConfigureActivity.", "after getbundle");
+            if (extras != null)
+            {
+                mAppWidgetId = extras.getInt(
+                        AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID );
+                Log.d ("TempWidgetConfigureActivity.", "after getwidgetid");
+            }
 
+            // If this activity was started with an intent without an app widget ID, finish with an error.
+            if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID)
+            {
+                finish();
+                return;
+            }
+
+            mAppWidgetText.setText( loadPreferences( TempWidgetConfigureActivity.this, mAppWidgetId ) );
             // When the button inputStream clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
             int updFrq = Integer.parseInt( mUpdateFrq.getText().toString());
