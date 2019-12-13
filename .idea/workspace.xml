@@ -15,11 +15,8 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidgetConfigureActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidgetConfigureActivity.java" afterDir="false" />
     </list>
     <ignored path=".gradle/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,20 +52,29 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="40" column="17" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="17" />
+            <state relative-caret-position="394">
+              <caret line="97" column="57" lean-forward="true" selection-start-line="97" selection-start-column="57" selection-end-line="97" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/lifecycle.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidgetConfigureActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1530">
-              <caret line="93" column="69" selection-start-line="93" selection-start-column="69" selection-end-line="93" selection-end-column="69" />
+            <state relative-caret-position="250">
+              <caret line="106" column="44" lean-forward="true" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
+              <folding>
+                <element signature="e#3858#4867#0" expanded="true" />
+                <element signature="e#4866#4867#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,12 +151,11 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -180,37 +185,23 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
+      <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Temperature" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="Temperature" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Temperature" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
-              <item name="Temperature" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="Temperature" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="Temperature" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="temperature" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Temperature" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+              <item name="Temperature" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Temperature" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -414,7 +405,7 @@
     </recent_temporary>
   </component>
   <component name="StructureViewFactory">
-    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR,SHOW_LAMBDA,SHOW_ANONYMOUS,SHOW_PROPERTIES" />
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR,SHOW_LAMBDA,SHOW_ANONYMOUS,SHOW_PROPERTIES,SHOW_FIELDS" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -602,15 +593,23 @@
       <option name="project" value="LOCAL" />
       <updated>1575992531185</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="widget">
+      <created>1576230707478</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1576230707478</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1721" height="935" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.50353354" side_tool="true" weight="0.21140939" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4571918" visible="true" weight="0.1884407" />
-      <window_info id="Structure" order="2" sideWeight="0.54280823" side_tool="true" visible="true" weight="0.1884407" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4570361" visible="true" weight="0.1884407" />
+      <window_info active="true" id="Structure" order="2" sideWeight="0.54296386" side_tool="true" visible="true" weight="0.1884407" />
       <window_info id="Favorites" order="3" sideWeight="0.29320112" side_tool="true" weight="0.2033557" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
@@ -618,15 +617,15 @@
       <window_info id="Resources Explorer" order="7" weight="0.32992172" />
       <window_info id="Capture Tool" order="8" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.47198007" />
-      <window_info anchor="bottom" id="Logcat" order="1" weight="0.2777086" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49548465" weight="0.2366127" />
       <window_info anchor="bottom" id="TODO" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2739726" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32876712" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5081276" side_tool="true" visible="true" weight="0.27272728" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="6" sideWeight="0.49187237" visible="true" weight="0.27272728" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50451535" side_tool="true" weight="0.2777086" />
+      <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.49187237" weight="0.27272728" />
       <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49428055" weight="0.19800748" />
       <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49969897" weight="0.32876712" />
-      <window_info anchor="bottom" id="Android Profiler" order="9" show_stripe_button="false" sideWeight="0.4960867" weight="0.5591532" />
+      <window_info anchor="bottom" id="Android Profiler" order="9" sideWeight="0.4960867" weight="0.5591532" />
       <window_info anchor="bottom" id="Find" order="10" weight="0.32876712" />
       <window_info anchor="bottom" id="Inspection Results" order="11" weight="0.32876712" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
@@ -752,7 +751,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/temp_widget_configure.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
@@ -761,10 +759,11 @@
           </folding>
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/temp_widget.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/xml/temp_widget_info.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -843,12 +842,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="331">
           <caret line="25" column="79" lean-forward="true" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="79" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-28/android.jar!/android/appwidget/AppWidgetProvider.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -864,13 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/WidgetService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/FetchData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -878,21 +870,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidgetConfigureActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/WidgetService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="93" column="69" selection-start-line="93" selection-start-column="69" selection-end-line="93" selection-end-column="69" />
-          <folding>
-            <element signature="e#3490#4499#0" expanded="true" />
-            <element signature="e#4498#4499#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="288">
+          <caret line="33" column="29" selection-start-line="33" selection-start-column="29" selection-end-line="33" selection-end-column="29" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/lifecycle.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="40" column="17" selection-start-line="40" selection-start-column="16" selection-end-line="40" selection-end-column="17" />
+        <state relative-caret-position="394">
+          <caret line="97" column="57" lean-forward="true" selection-start-line="97" selection-start-column="57" selection-end-line="97" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidgetConfigureActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="106" column="44" lean-forward="true" selection-start-line="106" selection-start-column="44" selection-end-line="106" selection-end-column="44" />
+          <folding>
+            <element signature="e#3858#4867#0" expanded="true" />
+            <element signature="e#4866#4867#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
