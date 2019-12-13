@@ -128,10 +128,11 @@ public class TempWidgetConfigureActivity extends Activity
             resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
             ComponentName serviceName = new ComponentName( context, FetchData.class );
             PersistableBundle jobExtras = new PersistableBundle(  );
-            jobExtras.putString( "ID", "kaka" );
+            jobExtras.putString( "ID", "Configjob" );
             JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
-            builder.setMinimumLatency(1); //delay before scheduling
-            builder.setOverrideDeadline(1);
+            //builder.setMinimumLatency(1); //delay before scheduling
+            //builder.setOverrideDeadline(1);
+            builder.setPeriodic( 60000 );
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
             builder.setExtras( jobExtras );
 

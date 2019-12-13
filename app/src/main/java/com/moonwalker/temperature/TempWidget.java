@@ -10,6 +10,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.PersistableBundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.RemoteViews;
@@ -24,7 +25,24 @@ import static android.content.Context.JOB_SCHEDULER_SERVICE;
 public class TempWidget extends AppWidgetProvider
 {
     private static final String ACTION_CLICK = "ACTION_CLICK";
-    private PendingIntent service;
+    private int jobOrigin;
+
+    public int getJobOrigin()
+    {
+        return jobOrigin;
+    }
+
+    public void setJobOrigin(int jobOrigin)
+    {
+        this.jobOrigin = jobOrigin;
+    }
+
+    public TempWidget()
+    {
+        jobOrigin = 0;  // 1 = ACTION_CLICK
+    }
+
+    //private PendingIntent service;
 
     @Override
     public void onReceive(Context context, Intent intent)
@@ -33,13 +51,13 @@ public class TempWidget extends AppWidgetProvider
         super.onReceive(context, intent);
         if (ACTION_CLICK.equals(intent.getAction()))
         {
+            setJobOrigin(1);
             ComponentName thisWidget = new ComponentName(context, TempWidget.class);
             int[]allWidgetIds=AppWidgetManager.getInstance(context).getAppWidgetIds(thisWidget);
 
             for (int appWidgetId : allWidgetIds)
             {
                 Log.d("TempWidget.", "onReceive");
-
                 onUpdate(context,AppWidgetManager.getInstance(context),allWidgetIds);
             }
         }
@@ -78,14 +96,42 @@ public class TempWidget extends AppWidgetProvider
         //TODO Jobscheduler
         ComponentName thisWidget = new ComponentName(context, TempWidget.class);
         ComponentName serviceName = new ComponentName( context, FetchData.class );
-        JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
-        //builder.setMinimumLatency( 1*1000 ); //delay before scheduling
-        //builder.setOverrideDeadline(3*1000  );
-        builder.setPeriodic( 60000 );
-        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
+        PersistableBundle jobExtras = new PersistableBundle(  );
+        jobExtras.putString( "ID", "onUpdateJob" );
 
-        JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
-        jobScheduler.schedule(builder.build());
+
+
+        if(getJobOrigin()==1)
+        {
+
+            JobInfo.Builder builder1 = new JobInfo.Builder(0, serviceName);
+            builder1.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
+//            builder1.setMinimumLatency( 1 ); //delay before scheduling
+//            builder1.setOverrideDeadline( 1 );
+//            builder1.setExtras( jobExtras );
+            JobScheduler jobScheduler1 = context.getSystemService(JobScheduler.class);
+//            jobScheduler1.cancelAll();
+//            jobScheduler1.schedule(builder1.build());
+
+//            builder1= new JobInfo.Builder(0, serviceName);
+            builder1.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
+            builder1.setPeriodic( 60000 );
+            builder1.setExtras( jobExtras );
+            jobScheduler1.cancelAll();
+            jobScheduler1.schedule(builder1.build());
+        }
+        else
+        {
+            JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
+            builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
+            builder.setMinimumLatency( 1 ); //delay before scheduling
+            builder.setOverrideDeadline( 1 );
+            builder.setExtras( jobExtras );
+            JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+            jobScheduler.schedule(builder.build());
+        }
+
+        setJobOrigin(0);
 
         int[]allWidgetIds=appWidgetManager.getAppWidgetIds(thisWidget);
 
@@ -148,15 +194,6 @@ public class TempWidget extends AppWidgetProvider
         Intent intent= new Intent(context,WidgetService.class);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,appWidgetId);
         views.setRemoteAdapter(R.id.appwidget_text, intent);
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-//        {
-//            context.startService(intent);
-//        }
-//        else
-//        {
-//            context.startService(intent);
-//        }
 
     }
 
