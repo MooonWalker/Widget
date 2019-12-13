@@ -95,6 +95,7 @@ public class TempWidgetConfigureActivity extends Activity
             Log.d ("TempWidgetConfigureActivity.", "after getintent");
             Bundle extras = intent.getExtras();
             Log.d ("TempWidgetConfigureActivity.", "after getbundle");
+
             if (extras != null)
             {
                 mAppWidgetId = extras.getInt(
@@ -109,7 +110,7 @@ public class TempWidgetConfigureActivity extends Activity
                 return;
             }
 
-            mAppWidgetText.setText( loadPreferences( TempWidgetConfigureActivity.this, mAppWidgetId ) );
+            //mAppWidgetText.setText( loadPreferences( TempWidgetConfigureActivity.this, mAppWidgetId ) );
             // When the button inputStream clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
             int updFrq = Integer.parseInt( mUpdateFrq.getText().toString());
