@@ -27,7 +27,6 @@ public class TempWidgetConfigureActivity extends Activity
     public TempWidgetConfigureActivity() //constructor
     {
         super();
-
     }
 
     // Write the prefix to the SharedPreferences object for this widget
@@ -78,16 +77,21 @@ public class TempWidgetConfigureActivity extends Activity
         mAppWidgetText = findViewById( R.id.appwidget_text );
         mUpdateFrq = findViewById( R.id.etUpdFrq );
         mUpdateFrq.setText( "30" );
+
         Log.d ("TempWidgetConfigureActivity.", "onCreate");
         findViewById( R.id.add_button ).setOnClickListener( mOnClickListener );
+        Log.d ("TempWidgetConfigureActivity.", "after set onclik listener");
 
         // Find the widget id from the intent.
         Intent intent = getIntent();
+        Log.d ("TempWidgetConfigureActivity.", "after getintent");
         Bundle extras = intent.getExtras();
+        Log.d ("TempWidgetConfigureActivity.", "after getbundle");
         if (extras != null)
         {
             mAppWidgetId = extras.getInt(
                     AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID );
+            Log.d ("TempWidgetConfigureActivity.", "after getwidgetid");
         }
 
         // If this activity was started with an intent without an app widget ID, finish with an error.
