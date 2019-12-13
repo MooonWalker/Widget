@@ -26,6 +26,7 @@ public class FetchData extends JobService
         Log.d ("Fetchdata.onStartJob", jobExtras.getString( "ID" ));
 
         //if(hasConnection()) ioTData=pollWeb();
+       onStopJob( jobParameters );
         return false;
     }
 
@@ -33,6 +34,7 @@ public class FetchData extends JobService
     public boolean onStopJob(JobParameters jobParameters)
     {
         Log.d("FetchData.", "onStopJob");
+
         return true;
     }
 

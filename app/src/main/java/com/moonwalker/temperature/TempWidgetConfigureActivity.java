@@ -122,8 +122,6 @@ public class TempWidgetConfigureActivity extends Activity
             savePreferences( context, mAppWidgetId, widgetText, updFrq );
 
             // It inputStream the responsibility of the configuration activity to update the app widget
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
-            TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
 
             // Make sure we pass back the original appWidgetId
             Intent resultValue = new Intent();
@@ -140,6 +138,8 @@ public class TempWidgetConfigureActivity extends Activity
             JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
             jobScheduler.schedule(builder.build());
 //TODO setextras to the job?
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
+            TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
 
             setResult( RESULT_OK, resultValue );
             finish();
