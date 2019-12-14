@@ -7,7 +7,7 @@ public class IoTData
     private double humidity;
     private String timestamphalo;
     private double tempErkely;
-    private String getTimestampErkely;
+    private String timestampErkely;
     private String message;
 
 
@@ -20,7 +20,7 @@ public class IoTData
     {
         return humidity;
     }
-    public void setHumidity(float humidity)
+    public void setHumidity(double humidity)
     {
         this.humidity = humidity;
     }
@@ -49,13 +49,6 @@ public class IoTData
         this.timestamphalo = timestamphalo;
     }
 
-    public String getGetTimestampErkely() {
-        return getTimestampErkely;
-    }
-
-    public void setGetTimestampErkely(String getTimestampErkely) {
-        this.getTimestampErkely = getTimestampErkely;
-    }
 
     public String getMessage() {
         return message;
@@ -63,5 +56,13 @@ public class IoTData
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getTimestampErkely() {
+        return timestampErkely;
+    }
+
+    public void setTimestampErkely(String timestampErkely) {
+        this.timestampErkely = timestampErkely;
     }
 }

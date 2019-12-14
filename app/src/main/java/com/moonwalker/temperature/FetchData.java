@@ -25,8 +25,8 @@ public class FetchData extends JobService
     {
         PersistableBundle jobExtras = jobParameters.getExtras();
         Log.d ("Fetchdata.onStartJob", jobExtras.getString( "ID" ));
-
-       if(hasConnection()) ioTData=pollWeb();
+        IoTData ioTData1 = new IoTData();
+       if(hasConnection()) ioTData1=pollWeb();
 
        onStopJob( jobParameters );
         return false;
@@ -42,9 +42,9 @@ public class FetchData extends JobService
 
     private IoTData pollWeb()
     {
-        IoTData result= new IoTData();
+        IoTData result;
         PHPCom getPHP =new PHPCom(this);
-        getPHP.execute();
+        result=getPHP.execute();
 
         return result;
     }

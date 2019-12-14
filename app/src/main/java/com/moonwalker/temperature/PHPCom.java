@@ -7,9 +7,8 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.EditText;
+
 import com.android.volley.Request;
 
 
@@ -42,41 +41,50 @@ public class PHPCom
         ctx=_ctx;
     }
 
-    public String execute()
+    public IoTData execute()
     {
         jsonParser= new JSONParser(ctx);
-        JSONObject json = jsonParser.makeHttpRequest(url_get_data, Request.Method.GET);
-        if (json == null)
-        {
-            return "wrong";
-        }
-        Log.d("PHPCom.Create Response", json.toString());
+        IoTData ioTData = new IoTData();
 
         try
         {
-            String success = json.getString(TAG_SUCCESS);
+            JSONObject json = jsonParser.makeHttpRequest(url_get_data, Request.Method.GET);
+            if (json == null)
+            {
+                throw new Exception("PHPCom.json is null");
+            }
+            Log.d("PHPCom.Create Response", json.toString());
+            String success = json.getString(QUERY_RESULT);
             if (success.equals("OK"))
             {
-                Double tempHalo = json.getDouble(TEMP_HALO);
-                Double humidity = json.getDouble(HUMIDITY);
+                double tempHalo = json.getDouble(TEMP_HALO);
+                double humidity = json.getDouble(HUMIDITY);
                 String timeStampHalo = json.getString(TIMESTAMP_HALO);
-                Double tempErkely = json.getDouble(TEMP_ERKELY);
+                double tempErkely = json.getDouble(TEMP_ERKELY);
                 String timeStampErkely= json.getString(TIMESTAMP_ERKELY);
 
+                ioTData.setTemphalo(tempHalo);
+                ioTData.setHumidity(humidity);
+                ioTData.setTimestamphalo(timeStampHalo);
+                ioTData.setTempErkely(tempErkely);
+                ioTData.setTimestampErkely(timeStampErkely);
+                ioTData.setMessage(success);
 
             }
             else
             {
-
+                throw new JSONException("PHPCom");
             }
         }
         catch (JSONException e)
         {
-            sendwascorrect = "false";
             e.printStackTrace();
-
         }
-        return sendwascorrect;
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return ioTData;
     }
 
 }
