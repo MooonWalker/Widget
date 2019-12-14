@@ -41,7 +41,7 @@ public class IoTData
         this.tempErkely = tempErkely;
     }
 
-    public String getTimestamphalo() {
+    public String getTimestampHalo() {
         return timestamphalo;
     }
 

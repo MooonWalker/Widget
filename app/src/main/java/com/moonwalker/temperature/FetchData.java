@@ -1,20 +1,18 @@
 package com.moonwalker.temperature;
 
-import android.app.Service;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.IBinder;
 import android.os.PersistableBundle;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 public class FetchData extends JobService
 {
-    private IoTData ioTData;
-
     public FetchData()
     {
 
@@ -25,8 +23,21 @@ public class FetchData extends JobService
     {
         PersistableBundle jobExtras = jobParameters.getExtras();
         Log.d ("Fetchdata.onStartJob", jobExtras.getString( "ID" ));
-        IoTData ioTData1 = new IoTData();
-       if(hasConnection()) ioTData1=pollWeb();
+
+        if(hasConnection())
+        {
+            IoTData ioTData1=new IoTData();
+            ioTData1=pollWeb();
+
+            String lastUpdate = "Háló: "+ ioTData1.getTemphalo()+"C"+"\n"+
+                    ioTData1.getTimestampHalo();
+            RemoteViews view = new RemoteViews(getPackageName(), R.layout.temp_widget);
+            view.setTextViewText(R.id.appwidget_text, lastUpdate);
+            ComponentName theWidget = new ComponentName(this, TempWidget.class);
+            AppWidgetManager manager = AppWidgetManager.getInstance(this);
+            manager.updateAppWidget(theWidget, view);
+            Log.d("Fetchdata.onStartJob","after setting text");
+        }
 
        onStopJob( jobParameters );
         return false;

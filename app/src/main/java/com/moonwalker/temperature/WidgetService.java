@@ -59,13 +59,11 @@ public class WidgetService extends RemoteViewsService
         int rndNumber = (new Random().nextInt(100));
         String lastUpdate = "R: "+rndNumber;
 
-        RemoteViews view = new RemoteViews(getPackageName(), R.layout.temp_widget);
-        view.setTextViewText(R.id.appwidget_text, lastUpdate);
-        ComponentName theWidget = new ComponentName(this, TempWidget.class);
-        AppWidgetManager manager = AppWidgetManager.getInstance(this);
-        manager.updateAppWidget(theWidget, view);
-
-
+//        RemoteViews view = new RemoteViews(getPackageName(), R.layout.temp_widget);
+//        view.setTextViewText(R.id.appwidget_text, lastUpdate);
+//        ComponentName theWidget = new ComponentName(this, TempWidget.class);
+//        AppWidgetManager manager = AppWidgetManager.getInstance(this);
+//        manager.updateAppWidget(theWidget, view);
 
         stopSelf();
 

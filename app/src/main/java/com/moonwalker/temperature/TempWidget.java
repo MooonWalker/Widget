@@ -106,17 +106,15 @@ public class TempWidget extends AppWidgetProvider
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds)
     {
         Log.d("TempWidget.", "onUpdate");
-        //TODO Jobscheduler
+
         ComponentName thisWidget = new ComponentName(context, TempWidget.class);
         ComponentName serviceName = new ComponentName( context, FetchData.class );
         PersistableBundle jobExtras = new PersistableBundle(  );
         jobExtras.putString( "ID", "onUpdateJob" );
 
-
-
         if(getJobOrigin()==1)
         {
-
+            Log.d("TempWidget.", "onUpdate THEN");
             JobInfo.Builder builder1 = new JobInfo.Builder(0, serviceName);
             builder1.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
             builder1.setMinimumLatency( 1 ); //delay before scheduling
@@ -129,6 +127,7 @@ public class TempWidget extends AppWidgetProvider
         }
         else
         {
+            Log.d("TempWidget.", "onUpdate ELSE");
             JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
             builder.setMinimumLatency( 1 ); //delay before scheduling
