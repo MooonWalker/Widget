@@ -38,7 +38,8 @@ public class TempWidgetConfigureActivity extends Activity
     {
         SharedPreferences.Editor prefs = context.getSharedPreferences( PREFS_NAME, 0 ).edit();
         prefs.putString( PREF_TITLE + appWidgetId, text );
-        prefs.putInt( PREF_FRQ + appWidgetId, updFrq );
+        prefs.putInt( PREF_FRQ , updFrq );
+        Log.d("TempWidgetConfig.updFRQ", String.valueOf( updFrq ));
         prefs.apply();
     }
 
@@ -48,7 +49,7 @@ public class TempWidgetConfigureActivity extends Activity
     {
         SharedPreferences prefs = context.getSharedPreferences( PREFS_NAME, 0 );
         String titleValue = prefs.getString( PREF_TITLE + appWidgetId, null );
-        int updFrq = prefs.getInt( PREF_FRQ+appWidgetId,60);
+        int updFrq = prefs.getInt( PREF_FRQ,60);
 
         if (titleValue != null)
         {
@@ -60,11 +61,17 @@ public class TempWidgetConfigureActivity extends Activity
         }
     }
 
+    static int loadPrefUpdFRQ(Context context,int mAppWidgetId)
+    {
+        SharedPreferences prefs = context.getSharedPreferences( PREFS_NAME, 0 );
+        return prefs.getInt( PREF_TITLE,60 );
+    }
+
     static void deletePreferences(Context context, int appWidgetId)
     {
         SharedPreferences.Editor prefs = context.getSharedPreferences( PREFS_NAME, 0 ).edit();
         prefs.remove( PREF_TITLE + appWidgetId );
-        prefs.remove( PREF_FRQ + appWidgetId );
+        prefs.remove( PREF_FRQ );
         prefs.apply();
     }
 
@@ -121,24 +128,11 @@ public class TempWidgetConfigureActivity extends Activity
 
             savePreferences( context, mAppWidgetId, widgetText, updFrq );
 
-            // It inputStream the responsibility of the configuration activity to update the app widget
-
             // Make sure we pass back the original appWidgetId
             Intent resultValue = new Intent();
             resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
             ComponentName serviceName = new ComponentName( context, FetchData.class );
-            PersistableBundle jobExtras = new PersistableBundle(  );
-            jobExtras.putString( "ID", "Configjob" );
-            JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
-            //builder.setMinimumLatency(1); //delay before scheduling
-            //builder.setOverrideDeadline(1);
-            builder.setPeriodic( 60000 );
-            builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
-            builder.setExtras( jobExtras );
 
-            JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
-            jobScheduler.schedule(builder.build());
-//TODO setextras to the job?
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
             TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
 

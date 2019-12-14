@@ -13,6 +13,8 @@ import android.util.Log;
 
 public class FetchData extends JobService
 {
+    private IoTData ioTData;
+
     public FetchData()
     {
 
@@ -21,11 +23,11 @@ public class FetchData extends JobService
     @Override
     public boolean onStartJob(JobParameters jobParameters)
     {
-        Log.d("FetchData.", "onStartJob");
         PersistableBundle jobExtras = jobParameters.getExtras();
         Log.d ("Fetchdata.onStartJob", jobExtras.getString( "ID" ));
 
-        //if(hasConnection()) ioTData=pollWeb();
+       if(hasConnection()) ioTData=pollWeb();
+
        onStopJob( jobParameters );
         return false;
     }
@@ -41,8 +43,8 @@ public class FetchData extends JobService
     private IoTData pollWeb()
     {
         IoTData result= new IoTData();
-        PHPCom getPHP =new PHPCom(this);
-        getPHP.execute();
+        //PHPCom getPHP =new PHPCom(this);
+        //getPHP.execute();
 
         return result;
     }

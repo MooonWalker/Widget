@@ -26,6 +26,19 @@ public class TempWidget extends AppWidgetProvider
 {
     private static final String ACTION_CLICK = "ACTION_CLICK";
     private int jobOrigin;
+    protected int updFRQ=60;
+
+    public int getUpdFRQ()
+    {
+        return updFRQ;
+    }
+
+    public void setUpdFRQ(int updFRQ)
+    {
+        this.updFRQ = updFRQ;
+    }
+
+
 
     public int getJobOrigin()
     {
@@ -106,19 +119,13 @@ public class TempWidget extends AppWidgetProvider
 
             JobInfo.Builder builder1 = new JobInfo.Builder(0, serviceName);
             builder1.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
-//            builder1.setMinimumLatency( 1 ); //delay before scheduling
-//            builder1.setOverrideDeadline( 1 );
-//            builder1.setExtras( jobExtras );
-            JobScheduler jobScheduler1 = context.getSystemService(JobScheduler.class);
-//            jobScheduler1.cancelAll();
-//            jobScheduler1.schedule(builder1.build());
-
-//            builder1= new JobInfo.Builder(0, serviceName);
-            builder1.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
-            builder1.setPeriodic( 60000 );
+            builder1.setMinimumLatency( 1 ); //delay before scheduling
+            builder1.setOverrideDeadline( 1 );
             builder1.setExtras( jobExtras );
+            JobScheduler jobScheduler1 = context.getSystemService(JobScheduler.class);
             jobScheduler1.cancelAll();
             jobScheduler1.schedule(builder1.build());
+
         }
         else
         {
