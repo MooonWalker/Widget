@@ -27,10 +27,7 @@ public class JSONParser
     static String result="";
 
     // constructor
-    public JSONParser()
-    {
-        super();
-    }
+
 
     public JSONParser(Context ctx)
     {
@@ -47,13 +44,7 @@ public class JSONParser
         {
             if(method == Request.Method.POST)
             {
-//                DefaultHttpClient httpClient = new DefaultHttpClient();
-//                HttpPost httpPost = new HttpPost(url);
-//                httpPost.setEntity(new UrlEncodedFormEntity(params));
-//
-//                HttpResponse httpResponse = httpClient.execute(httpPost);
-//                HttpEntity httpEntity = httpResponse.getEntity();
-//                inputStream = httpEntity.getContent();
+
             }
             else if(method == Request.Method.GET)
             {
@@ -78,16 +69,9 @@ public class JSONParser
                 });
 
                 stringRequest.setTag(TAG);
-//              Add the request to the RequestQueue.
+
                 requestQueue.add(stringRequest);
 
-//                @Override
-//                protected void onStop () {
-//                super.onStop();
-//                if (requestQueue != null) {
-//                    requestQueue.cancelAll(TAG);
-//                }
-//            }
 
             }
         }//try
