@@ -19,11 +19,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/FetchData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/FetchData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/IoTData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/IoTData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/WidgetService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/WidgetService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/temp_widget.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/temp_widget.xml" afterDir="false" />
     </list>
     <ignored path=".gradle/" />
     <ignored path="local.properties" />
@@ -61,20 +57,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/FetchData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+            <state relative-caret-position="340">
+              <caret line="28" column="43" lean-forward="true" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidgetConfigureActivity.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="134" selection-start-line="134" selection-end-line="134" />
+            <state relative-caret-position="196">
+              <caret line="146" column="44" selection-start-line="146" selection-start-column="44" selection-end-line="146" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,8 +129,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/PHPCom.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/temp_widget.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/WidgetService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/FetchData.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java" />
       </list>
     </option>
   </component>
@@ -649,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576357099438</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="alpha">
+      <created>1576359197644</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1576359197644</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -764,7 +770,8 @@
     <MESSAGE value="Initial" />
     <MESSAGE value="Initial2" />
     <MESSAGE value="Home checkout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Home checkout" />
+    <MESSAGE value="alpha" />
+    <option name="LAST_COMMIT_MESSAGE" value="alpha" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -908,20 +915,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/FetchData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="105" column="16" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="28" column="43" lean-forward="true" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/FetchData.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/moonwalker/temperature/TempWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="32" column="42" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="42" />
+        <state relative-caret-position="196">
+          <caret line="146" column="44" selection-start-line="146" selection-start-column="44" selection-end-line="146" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

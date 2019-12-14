@@ -144,6 +144,7 @@ public class TempWidget extends AppWidgetProvider
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : allWidgetIds)
         {
+            //TODO kigyomlálni ezt a szart.
             //updateAppWidget( context, appWidgetManager, appWidgetId );
             int number = (new Random().nextInt(100));
 
