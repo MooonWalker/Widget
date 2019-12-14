@@ -18,11 +18,11 @@ public class PHPCom
 {
     // Progress Dialog
     private  ProgressDialog pDialog;
-    public static final String TEMP_HÁLÓ = "temphalo";
+    public static final String TEMP_HALO = "temphalo";
     public static final String HUMIDITY = "humidity";
-    public static final String TIMESTAMP_HÁLÓ = "timestamphalo";
-    public static final String TEMP_ERKÉLY = "temperkely";
-    public static final String TIMESTAMP_ERKÉLY = "timestamperkely";
+    public static final String TIMESTAMP_HALO = "timestamphalo";
+    public static final String TEMP_ERKELY = "temperkely";
+    public static final String TIMESTAMP_ERKELY = "timestamperkely";
     public static final String QUERY_RESULT = "message";
 
     Context ctx;
@@ -57,11 +57,17 @@ public class PHPCom
             String success = json.getString(TAG_SUCCESS);
             if (success.equals("OK"))
             {
-                sendwascorrect = "true";
+                Double tempHalo = json.getDouble(TEMP_HALO);
+                Double humidity = json.getDouble(HUMIDITY);
+                String timeStampHalo = json.getString(TIMESTAMP_HALO);
+                Double tempErkely = json.getDouble(TEMP_ERKELY);
+                String timeStampErkely= json.getString(TIMESTAMP_ERKELY);
+
+
             }
             else
             {
-                sendwascorrect = "false";
+
             }
         }
         catch (JSONException e)
