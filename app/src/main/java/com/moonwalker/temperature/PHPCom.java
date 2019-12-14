@@ -19,9 +19,6 @@ public class PHPCom
     // Progress Dialog
     private  ProgressDialog pDialog;
 
-    EditText inputName;
-    EditText inputPrice;
-    EditText inputDesc;
     Context ctx;
     JSONParser jsonParser;
     String sendwascorrect= Boolean.TRUE.toString();
@@ -31,7 +28,7 @@ public class PHPCom
 
 
     // JSON Node names
-    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_SUCCESS = "message";
 
     public PHPCom(Context _ctx)
     {
@@ -47,14 +44,14 @@ public class PHPCom
         {
             return "wrong";
         }
-        Log.d("Create Response", json.toString());
+        Log.d("PHPCom.Create Response", json.toString());
 
         try
         {
-            int success = json.getInt(TAG_SUCCESS);
-            if (success == 1)
+            String success = json.getString(TAG_SUCCESS);
+            if (success.equals("OK"))
             {
-
+                sendwascorrect = "true";
             }
             else
             {
@@ -67,7 +64,6 @@ public class PHPCom
             e.printStackTrace();
 
         }
-        //new GetIoTDataTask().execute(stufftosend);
         return sendwascorrect;
     }
 

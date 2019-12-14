@@ -3,27 +3,21 @@ package com.moonwalker.temperature;
 import android.content.Context;
 import android.util.Log;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONParser
 {
-    public static final String TAG = "TempWidget";
+    public static final String TEMP_HÁLÓ = "temphalo";
+    public static final String TIMESTAMP_HÁLÓ = "timestamphalo";
+    public static final String TEMP_ERKÉLY = "temperkely";
+    public static final String TIMESTAMP_ERKÉLY = "timestamperkely";
+    public static final String QUERY_RESULT = "message";
+
     static InputStream inputStream = null;
     static JSONObject jObj = null;
     static String json = "";
@@ -31,8 +25,6 @@ public class JSONParser
     static String result="";
 
     // constructor
-
-
     public JSONParser(Context ctx)
     {
         super();
@@ -44,11 +36,8 @@ public class JSONParser
     public JSONObject makeHttpRequest(String url, int method)
     {
         // Making HTTP request
-        try
-        {
             if(method == Request.Method.POST)
             {
-
             }
             else if(method == Request.Method.GET)
             {
@@ -61,8 +50,22 @@ public class JSONParser
                          @Override
                             public void onResponse(JSONObject response)
                          {
-                             Log.d("JsonParser.onResponse",response.toString());
-                                //textView.setText("Response: " + response.toString());
+                             try
+                             {
+                                 Log.d("JsonParser.onResponse", response.toString());
+                                 Double tempHalo = response.getDouble(TEMP_HÁLÓ);
+                                 String timestampHalo = response.getString(TIMESTAMP_HÁLÓ);
+                                 Double tempErkely = response.getDouble(TEMP_ERKÉLY);
+                                 String timestampErkely = response.getString(TIMESTAMP_ERKÉLY);
+                                 String serverResult = response.getString(QUERY_RESULT);
+                                 jObj = new JSONObject();
+                                 jObj=response;
+
+                             }
+                             catch (JSONException e)
+                             {
+                                 e.printStackTrace();
+                             }
                          }
                      }, new Response.ErrorListener()
                             {
@@ -76,22 +79,6 @@ public class JSONParser
 
                 Singletonclass.getInstance(context).addToRequestQueue(jsonObjectRequest);
             }
-        }//try
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-
-        // try parse the string to a JSON object
-        try
-        {
-            jObj = new JSONObject(json);
-        }
-        catch (JSONException e)
-        {
-            Log.e("JSON Parser", "Error parsing data " + e.toString());
-        }
 
         // return JSON String
         return jObj;

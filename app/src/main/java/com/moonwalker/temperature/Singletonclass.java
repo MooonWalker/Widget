@@ -1,13 +1,10 @@
 package com.moonwalker.temperature;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONObject;
 
 class Singletonclass
 {
@@ -22,7 +19,7 @@ class Singletonclass
         mRequestQueue = getmRequestQueue();
     }
 
-    public RequestQueue getmRequestQueue()
+    private RequestQueue getmRequestQueue()
     {
         if(mRequestQueue == null)
         {
@@ -47,13 +44,9 @@ class Singletonclass
     }
 
 
-    public JSONObject addToRequestQueue(JsonObjectRequest jsonObjectRequest)
+    void addToRequestQueue(JsonObjectRequest jsonObjectRequest)
     {
-
         getmRequestQueue().add( jsonObjectRequest );
-        Log.d("Singleton","addReQuestqueue");
-        final JSONObject i = new JSONObject( jsonObjectRequest.getBody().toString() );
-        return i;
     }
 }
 
