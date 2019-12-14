@@ -1,0 +1,13 @@
+
+11:26:39.408  D/TempWidgetConfigureActivity.: onCreate
+11:26:39.408  D/TempWidgetConfigureActivity.: after set onclik listener
+11:26:39.408  D/TempWidgetConfigureActivity.: after getintent
+11:26:39.409  D/TempWidgetConfigureActivity.: after getbundle
+11:26:39.409  D/TempWidgetConfigureActivity.: after getwidgetid
+11:26:39.590  D/TempWidget.: onUpdate
+11:26:39.597  D/TempWidget.: setRemoteAdapter
+11:26:39.863  D/Widgetservice.: constructor
+11:26:39.863  D/Widgetservice.: onCreate
+11:26:39.864  D/Widgetservice.: onStartCommand
+11:26:40.599  D/FetchData.: onStartJob
+
