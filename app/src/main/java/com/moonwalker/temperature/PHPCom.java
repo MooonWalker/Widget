@@ -18,6 +18,12 @@ public class PHPCom
 {
     // Progress Dialog
     private  ProgressDialog pDialog;
+    public static final String TEMP_HÁLÓ = "temphalo";
+    public static final String HUMIDITY = "humidity";
+    public static final String TIMESTAMP_HÁLÓ = "timestamphalo";
+    public static final String TEMP_ERKÉLY = "temperkely";
+    public static final String TIMESTAMP_ERKÉLY = "timestamperkely";
+    public static final String QUERY_RESULT = "message";
 
     Context ctx;
     JSONParser jsonParser;

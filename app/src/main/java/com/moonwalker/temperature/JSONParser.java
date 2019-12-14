@@ -12,13 +12,7 @@ import org.json.JSONObject;
 
 public class JSONParser
 {
-    public static final String TEMP_HÁLÓ = "temphalo";
-    public static final String TIMESTAMP_HÁLÓ = "timestamphalo";
-    public static final String TEMP_ERKÉLY = "temperkely";
-    public static final String TIMESTAMP_ERKÉLY = "timestamperkely";
-    public static final String QUERY_RESULT = "message";
 
-    static InputStream inputStream = null;
     static JSONObject jObj = null;
     static String json = "";
     Context context;
@@ -50,22 +44,10 @@ public class JSONParser
                          @Override
                             public void onResponse(JSONObject response)
                          {
-                             try
-                             {
+
                                  Log.d("JsonParser.onResponse", response.toString());
-                                 Double tempHalo = response.getDouble(TEMP_HÁLÓ);
-                                 String timestampHalo = response.getString(TIMESTAMP_HÁLÓ);
-                                 Double tempErkely = response.getDouble(TEMP_ERKÉLY);
-                                 String timestampErkely = response.getString(TIMESTAMP_ERKÉLY);
-                                 String serverResult = response.getString(QUERY_RESULT);
                                  jObj = new JSONObject();
                                  jObj=response;
-
-                             }
-                             catch (JSONException e)
-                             {
-                                 e.printStackTrace();
-                             }
                          }
                      }, new Response.ErrorListener()
                             {

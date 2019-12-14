@@ -2,42 +2,66 @@ package com.moonwalker.temperature;
 
 public class IoTData
 {
-    private String location="";
-    private float temperature;
-    private float humidity;
+
+    private double temphalo;
+    private double humidity;
+    private String timestamphalo;
+    private double tempErkely;
+    private String getTimestampErkely;
+    private String message;
+
 
     public IoTData()
     {
 
     }
 
-    public String getLocation()
-    {
-        return location;
-    }
-
-    public void setLocation(String location)
-    {
-        this.location = location;
-    }
-
-    public float getTemperature()
-    {
-        return temperature;
-    }
-
-    public void setTemperature(float temperature)
-    {
-        this.temperature = temperature;
-    }
-
-    public float getHumidity()
+    public double getHumidity()
     {
         return humidity;
     }
-
     public void setHumidity(float humidity)
     {
         this.humidity = humidity;
+    }
+
+    public double getTemphalo() {
+        return temphalo;
+    }
+
+    public void setTemphalo(double temphalo) {
+        this.temphalo = temphalo;
+    }
+
+    public double getTempErkely() {
+        return tempErkely;
+    }
+
+    public void setTempErkely(double tempErkely) {
+        this.tempErkely = tempErkely;
+    }
+
+    public String getTimestamphalo() {
+        return timestamphalo;
+    }
+
+    public void setTimestamphalo(String timestamphalo) {
+        this.timestamphalo = timestamphalo;
+    }
+
+    public String getGetTimestampErkely() {
+        return getTimestampErkely;
+    }
+
+    public void setGetTimestampErkely(String getTimestampErkely) {
+        this.getTimestampErkely = getTimestampErkely;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
