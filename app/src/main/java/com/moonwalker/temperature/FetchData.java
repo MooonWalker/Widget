@@ -51,21 +51,35 @@ public class FetchData extends JobService
 
     private boolean hasConnection()
     {
+        boolean res;
+
         ConnectivityManager cm = (ConnectivityManager) getBaseContext().getSystemService(
                 Context.CONNECTIVITY_SERVICE);
 
-        NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifiNetwork != null && wifiNetwork.isConnected())
+        NetworkInfo activeNetwork  = cm.getActiveNetworkInfo();
+        if (activeNetwork != null)
         {
-            return true;
+            // connected to the internet
+            switch (activeNetwork.getType())
+            {
+                case ConnectivityManager.TYPE_WIFI:
+                    // connected to wifi
+                    res= true;
+                    break;
+                case ConnectivityManager.TYPE_MOBILE:
+                    // connected to mobile data
+                    res= true;
+                    break;
+                default:
+                    res=false;
+                    break;
+            }
         }
-
-        NetworkInfo mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        if (mobileNetwork != null && mobileNetwork.isConnected())
+        else
         {
-            return true;        }
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork != null && activeNetwork.isConnected();
+            // not connected to the internet
+            res = false;
+        }
+        return res;
     }
 }

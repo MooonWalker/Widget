@@ -53,7 +53,7 @@ public class PHPCom
             {
                 throw new Exception("PHPCom.json is null");
             }
-            Log.d("PHPCom.Create Response", json.toString());
+            //Log.d("PHPCom.Create Response", json.toString());
             String success = json.getString(QUERY_RESULT);
             if (success.equals("OK"))
             {
@@ -69,7 +69,6 @@ public class PHPCom
                 ioTData.setTempErkely(tempErkely);
                 ioTData.setTimestampErkely(timeStampErkely);
                 ioTData.setMessage(success);
-
             }
             else
             {
