@@ -30,7 +30,7 @@ public class FetchData extends JobService
             ioTData1=pollWeb();
 
             String lastUpdate = getString(R.string.Bedroom)+ ioTData1.getTemphalo()+"C"+
-                    " "+getString(R.string.Balcony)+ioTData1.getTempErkely()+"C"+"\n"+
+                    "  "+getString(R.string.Balcony)+ioTData1.getTempErkely()+"C"+"\n"+
                     ioTData1.getTimestampHalo();
             RemoteViews view = new RemoteViews(getPackageName(), R.layout.temp_widget);
             view.setTextViewText(R.id.appwidget_text, lastUpdate);

@@ -66,13 +66,12 @@ public class TempWidget extends AppWidgetProvider
             ComponentName thisWidget = new ComponentName(context, TempWidget.class);
             int[]allWidgetIds=AppWidgetManager.getInstance(context).getAppWidgetIds(thisWidget);
 
-//            for (int appWidgetId : allWidgetIds)
-//            {
+            for (int appWidgetId : allWidgetIds)
+            {
                 Log.d("TempWidget.onReceive.ACTION_CLICK",String.valueOf(allWidgetIds) );
                 onUpdate(context,AppWidgetManager.getInstance(context),allWidgetIds);
-            //}
+            }
         }
-
     }
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
@@ -144,9 +143,7 @@ public class TempWidget extends AppWidgetProvider
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : allWidgetIds)
         {
-            //TODO kigyomlálni ezt a szart.
-
-             // Construct the RemoteViews object
+            // Construct the RemoteViews object
              RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
              views.setTextViewText(R.id.appwidget_text,context.getString(R.string.loading));
              setRemoteAdapter(context,views,appWidgetId); //-------setremoteadapter

@@ -8,5 +8,5 @@
     <string name="loading">töltés...</string>
     <string name="appwidget_text">Minta szöveg</string>
     <string name="Bedroom">"Háló: "</string>
-    <string name="Balcony">"Erkély: "</string>
+    <string name="Balcony">"Erk: "</string>
 </resources>
