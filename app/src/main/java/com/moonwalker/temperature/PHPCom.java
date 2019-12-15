@@ -12,7 +12,6 @@ import android.util.Log;
 import com.android.volley.Request;
 
 
-
 public class PHPCom
 {
     // Progress Dialog
@@ -51,7 +50,6 @@ public class PHPCom
             JSONObject json = jsonParser.makeHttpRequest(url_get_data, Request.Method.GET);
             if (json == null)
             {
-                //json = jsonParser.makeHttpRequest(url_get_data, Request.Method.GET);
                 throw new Exception("PHPCom.json is null");
             }
             //Log.d("PHPCom.Create Response", json.toString());

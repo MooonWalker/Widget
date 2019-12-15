@@ -19,19 +19,81 @@ import android.widget.EditText;
  */
 public class TempWidgetConfigureActivity extends Activity
 {
-
     private static final String PREFS_NAME = "com.moonwalker.temperature.TempWidget";
     private static final String PREF_TITLE = "widgettitle";
     private static final String PREF_FRQ = "updfrq";
 
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
-    EditText mAppWidgetText;
+    EditText mAppWidgetText; //widget content
     EditText mUpdateFrq;
 
     public TempWidgetConfigureActivity() //constructor
     {
         super();
     }
+    @Override
+    public void onCreate(Bundle bundle)
+    {
+        super.onCreate( bundle );
+
+        // Set the result to CANCELED.  This will cause the widget host to cancel
+        // out of the widget placement if the user presses the back button.
+        setResult( RESULT_CANCELED );
+
+        setContentView( R.layout.temp_widget_configure );
+        mAppWidgetText = findViewById( R.id.appwidget_text );
+        mUpdateFrq = findViewById( R.id.etUpdFrq );
+        mUpdateFrq.setText( String.valueOf(30) );  //30 minutes as default value
+
+        Log.d ("TempWidgetConfigureActivity.", "onCreate");
+
+        findViewById( R.id.add_button ).setOnClickListener( mOnClickListener );
+
+    }
+
+    View.OnClickListener mOnClickListener = new View.OnClickListener()
+    {
+        public void onClick(View v)
+        {
+            final Context context = TempWidgetConfigureActivity.this;
+            Intent intent = getIntent();
+            Bundle bundle = intent.getExtras();
+
+            Log.d ("TempWidgetConfigureActivity.", "after getbundle");
+
+            if (bundle != null)
+            {
+                mAppWidgetId = bundle.getInt(
+                        AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID );
+
+                Log.d ("TempWidgetConfigureActivity.WIDGET_ID", String.valueOf(mAppWidgetId));
+            }
+
+            // If this activity was started with an intent without an app widget ID, finish with an error.
+            if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID)
+            {
+                finish();
+                return;
+            }
+
+            //mAppWidgetText.setText( loadPreferences( TempWidgetConfigureActivity.this, mAppWidgetId ) );
+            // When the button inputStream clicked, store the string locally
+            String widgetText = mAppWidgetText.getText().toString();
+            int updFrq = Integer.parseInt( mUpdateFrq.getText().toString());
+            savePreferences( context, mAppWidgetId, widgetText, updFrq );
+
+            // Make sure we pass back the original appWidgetId
+            Intent resultValue = new Intent();
+            resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
+            ComponentName serviceName = new ComponentName( context, FetchData.class );
+
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
+            TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
+
+            setResult( RESULT_OK, resultValue );
+            finish();
+        }
+    };
 
     // Write the prefix to the SharedPreferences object for this widget
     static void savePreferences(Context context, int appWidgetId, String text, int updFrq)
@@ -75,69 +137,5 @@ public class TempWidgetConfigureActivity extends Activity
         prefs.remove( PREF_FRQ );
         prefs.apply();
     }
-
-    @Override
-    public void onCreate(Bundle icicle)
-    {
-        super.onCreate( icicle );
-
-        // Set the result to CANCELED.  This will cause the widget host to cancel
-        // out of the widget placement if the user presses the back button.
-        setResult( RESULT_CANCELED );
-
-        setContentView( R.layout.temp_widget_configure );
-        mAppWidgetText = findViewById( R.id.appwidget_text );
-        mUpdateFrq = findViewById( R.id.etUpdFrq );
-        mUpdateFrq.setText( String.valueOf(30) );  //30 minutes as default value
-
-        Log.d ("TempWidgetConfigureActivity.", "onCreate");
-
-        findViewById( R.id.add_button ).setOnClickListener( mOnClickListener );
-
-    }
-
-    View.OnClickListener mOnClickListener = new View.OnClickListener()
-    {
-        public void onClick(View v)
-        {
-            final Context context = TempWidgetConfigureActivity.this;
-            Intent intent = getIntent();
-            Bundle extras = intent.getExtras();
-
-            Log.d ("TempWidgetConfigureActivity.", "after getbundle");
-
-            if (extras != null)
-            {
-                mAppWidgetId = extras.getInt(
-                        AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID );
-
-                Log.d ("TempWidgetConfigureActivity.WIDGET_ID", String.valueOf(mAppWidgetId));
-            }
-
-            // If this activity was started with an intent without an app widget ID, finish with an error.
-            if (mAppWidgetId == AppWidgetManager.INVALID_APPWIDGET_ID)
-            {
-                finish();
-                return;
-            }
-
-            //mAppWidgetText.setText( loadPreferences( TempWidgetConfigureActivity.this, mAppWidgetId ) );
-            // When the button inputStream clicked, store the string locally
-            String widgetText = mAppWidgetText.getText().toString();
-            int updFrq = Integer.parseInt( mUpdateFrq.getText().toString());
-            savePreferences( context, mAppWidgetId, widgetText, updFrq );
-
-            // Make sure we pass back the original appWidgetId
-            Intent resultValue = new Intent();
-            resultValue.putExtra( AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId );
-            ComponentName serviceName = new ComponentName( context, FetchData.class );
-
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance( context );
-            TempWidget.updateAppWidget( context, appWidgetManager, mAppWidgetId );
-
-            setResult( RESULT_OK, resultValue );
-            finish();
-        }
-    };
 }
 

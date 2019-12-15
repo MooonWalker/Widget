@@ -84,7 +84,8 @@ public class TempWidget extends AppWidgetProvider
         CharSequence widgetTextfromPref = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
 
         RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
-        views.setTextViewText( R.id.appwidget_text, widgetTextfromPref );
+        //views.setTextViewText( R.id.appwidget_text, widgetTextfromPref );
+        views.setTextViewText( R.id.appwidget_text, context.getString(R.string.nodata) );
 
         //TODO Jobsheduler?
 
