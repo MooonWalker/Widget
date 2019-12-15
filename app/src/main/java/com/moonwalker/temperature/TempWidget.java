@@ -117,8 +117,8 @@ public class TempWidget extends AppWidgetProvider
             Log.d("TempWidget.", "onUpdate THEN");
             JobInfo.Builder builder1 = new JobInfo.Builder(0, serviceName);
             builder1.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
-            builder1.setMinimumLatency( 10 ); //delay before scheduling
-            builder1.setOverrideDeadline( 20 );
+            builder1.setMinimumLatency( 1 ); //delay before scheduling
+            builder1.setOverrideDeadline( 1 );
             builder1.setExtras( jobExtras );
             JobScheduler jobScheduler1 = context.getSystemService(JobScheduler.class);
             jobScheduler1.cancelAll();
@@ -129,8 +129,8 @@ public class TempWidget extends AppWidgetProvider
             Log.d("TempWidget.", "onUpdate ELSE");
             JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
-            builder.setMinimumLatency( 10 ); //delay before scheduling
-            builder.setOverrideDeadline( 20 );
+            builder.setMinimumLatency( 1 ); //delay before scheduling
+            builder.setOverrideDeadline( 1 );
             builder.setExtras( jobExtras );
             JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
             jobScheduler.schedule(builder.build());
