@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.StringRes;
+
 /**
  * The configuration screen
  */
@@ -44,6 +46,7 @@ public class TempWidgetConfigureActivity extends Activity
         mAppWidgetText = findViewById( R.id.appwidget_text );
         mUpdateFrq = findViewById( R.id.etUpdFrq );
         mUpdateFrq.setText( String.valueOf(30) );  //30 minutes as default value
+        mAppWidgetText.setText(R.string.appwidget_text);
 
         Log.d ("TempWidgetConfigureActivity.", "onCreate");
 

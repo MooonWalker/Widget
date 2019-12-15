@@ -145,12 +145,10 @@ public class TempWidget extends AppWidgetProvider
         for (int appWidgetId : allWidgetIds)
         {
             //TODO kigyomlálni ezt a szart.
-            //updateAppWidget( context, appWidgetManager, appWidgetId );
-            int number = (new Random().nextInt(100));
 
              // Construct the RemoteViews object
              RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
-             views.setTextViewText(R.id.appwidget_text,String.valueOf(number));
+             views.setTextViewText(R.id.appwidget_text,context.getString(R.string.loading));
              setRemoteAdapter(context,views,appWidgetId); //-------setremoteadapter
 
              Intent intent= new Intent(context,TempWidget.class);

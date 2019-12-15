@@ -15,7 +15,8 @@
         android:id="@+id/appwidget_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:enabled="false"
+        android:inputType="none" />
 
     <TextView
         android:id="@+id/textView2"
@@ -30,11 +31,12 @@
 
     <EditText
         android:id="@+id/etUpdFrq"
-        android:gravity="right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number" />
+        android:enabled="false"
+        android:gravity="right"
+        android:inputType="none|number" />
 
     <Button
         android:id="@+id/add_button"

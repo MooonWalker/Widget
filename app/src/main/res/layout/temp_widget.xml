@@ -20,6 +20,6 @@
         android:text="@string/appwidget_text"
         android:textColor="#ffffff"
         android:textSize="20sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="italic" />
 
 </RelativeLayout>

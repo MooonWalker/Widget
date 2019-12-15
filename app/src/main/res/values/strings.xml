@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Temperature</string>
-    <string name="appwidget_text">IoT Temperatures</string>
+    <string name="appwidget_text">Sample text</string>
     <string name="nodata">Tap to refresh.</string>
     <string name="configure">Configure widget text</string>
     <string name="add_widget">Add widget</string>
     <string name="updFrq">Update frequency (minutes):</string>
+    <string name="loading">loading...</string>
+    <string name="Bedroom">"Bedroom: "</string>
+    <string name="Balcony">"Balcony: "</string>
 </resources>

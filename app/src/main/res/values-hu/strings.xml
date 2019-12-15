@@ -4,6 +4,9 @@
     <string name="updFrq">Frissítési gyakoriság (perc):</string>
     <string name="configure">Beállítások</string>
     <string name="nodata">Érintsd meg!</string>
-    <string name="appwidget_text">IoT Temperatures</string>
     <string name="add_widget">Widget hozzáadása</string>
+    <string name="loading">töltés...</string>
+    <string name="appwidget_text">Minta szöveg</string>
+    <string name="Bedroom">"Háló: "</string>
+    <string name="Balcony">"Erkély: "</string>
 </resources>

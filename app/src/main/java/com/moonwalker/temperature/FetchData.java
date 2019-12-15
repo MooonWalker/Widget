@@ -26,10 +26,11 @@ public class FetchData extends JobService
 
         if(hasConnection())
         {
-            IoTData ioTData1=new IoTData();
+            IoTData ioTData1;
             ioTData1=pollWeb();
 
-            String lastUpdate = "Háló: "+ ioTData1.getTemphalo()+"C"+"\n"+
+            String lastUpdate = getString(R.string.Bedroom)+ ioTData1.getTemphalo()+"C"+
+                    " "+getString(R.string.Balcony)+ioTData1.getTempErkely()+"C"+"\n"+
                     ioTData1.getTimestampHalo();
             RemoteViews view = new RemoteViews(getPackageName(), R.layout.temp_widget);
             view.setTextViewText(R.id.appwidget_text, lastUpdate);
