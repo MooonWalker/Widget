@@ -66,11 +66,11 @@ public class TempWidget extends AppWidgetProvider
             ComponentName thisWidget = new ComponentName(context, TempWidget.class);
             int[]allWidgetIds=AppWidgetManager.getInstance(context).getAppWidgetIds(thisWidget);
 
-            for (int appWidgetId : allWidgetIds)
-            {
-                Log.d("TempWidget.onReceive.ACTION_CLICK",String.valueOf(appWidgetId) );
+//            for (int appWidgetId : allWidgetIds)
+//            {
+                Log.d("TempWidget.onReceive.ACTION_CLICK",String.valueOf(allWidgetIds) );
                 onUpdate(context,AppWidgetManager.getInstance(context),allWidgetIds);
-            }
+            //}
         }
 
     }
@@ -124,15 +124,14 @@ public class TempWidget extends AppWidgetProvider
             JobScheduler jobScheduler1 = context.getSystemService(JobScheduler.class);
             jobScheduler1.cancelAll();
             jobScheduler1.schedule(builder1.build());
-
         }
         else
         {
             Log.d("TempWidget.", "onUpdate ELSE");
             JobInfo.Builder builder = new JobInfo.Builder(0, serviceName);
             builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
-            builder.setMinimumLatency( 1 ); //delay before scheduling
-            builder.setOverrideDeadline( 1 );
+            builder.setMinimumLatency( 10 ); //delay before scheduling
+            builder.setOverrideDeadline( 20 );
             builder.setExtras( jobExtras );
             JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
             jobScheduler.schedule(builder.build());
