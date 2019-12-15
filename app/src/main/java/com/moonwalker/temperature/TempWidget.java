@@ -19,14 +19,12 @@ import java.util.Random;
 
 import androidx.annotation.NonNull;
 
-import static android.content.Context.JOB_SCHEDULER_SERVICE;
-
 
 public class TempWidget extends AppWidgetProvider
 {
     private static final String ACTION_CLICK = "ACTION_CLICK";
     private int jobOrigin;
-    protected int updFRQ=60;
+    protected int updFRQ=60; //minutes
 
     public int getUpdFRQ()
     {
@@ -70,7 +68,7 @@ public class TempWidget extends AppWidgetProvider
 
             for (int appWidgetId : allWidgetIds)
             {
-                Log.d("TempWidget.", "onReceive");
+                Log.d("TempWidget.onReceive.ACTION_CLICK",String.valueOf(appWidgetId) );
                 onUpdate(context,AppWidgetManager.getInstance(context),allWidgetIds);
             }
         }
@@ -80,14 +78,15 @@ public class TempWidget extends AppWidgetProvider
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId)
     {
-       Log.d("TempWidget.", "updateAppWidget");
+        Log.d("TempWidget.", "updateAppWidget");
 
-        CharSequence widgetText = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
+       //load Preferences which is titleValue+ " " + updFrq
+        CharSequence widgetTextfromPref = TempWidgetConfigureActivity.loadPreferences( context, appWidgetId );
 
         RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
-        views.setTextViewText( R.id.appwidget_text, widgetText );
+        views.setTextViewText( R.id.appwidget_text, widgetTextfromPref );
 
-        //TODO Jobscheduler
+        //TODO Jobsheduler?
 
         Intent intent= new Intent(context,TempWidget.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -96,10 +95,11 @@ public class TempWidget extends AppWidgetProvider
         Intent intent2 = new Intent(context, TempWidget.class);
         intent2.setAction(ACTION_CLICK);
         PendingIntent.getBroadcast(context, 0, intent2, 0);
-        views.setOnClickPendingIntent(R.id.appwidget_text,PendingIntent.getBroadcast(context,0,intent2,0));
+        views.setOnClickPendingIntent(R.id.appwidget_text,PendingIntent.getBroadcast(context,
+                0,intent2,0));
 
-         // Instruct the widget manager to update the widget
-         appWidgetManager.updateAppWidget( appWidgetId, views );
+        //Instruct the widget manager to update the widget
+        appWidgetManager.updateAppWidget( appWidgetId, views );
     }
 
     @Override
@@ -117,8 +117,8 @@ public class TempWidget extends AppWidgetProvider
             Log.d("TempWidget.", "onUpdate THEN");
             JobInfo.Builder builder1 = new JobInfo.Builder(0, serviceName);
             builder1.setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE);
-            builder1.setMinimumLatency( 1 ); //delay before scheduling
-            builder1.setOverrideDeadline( 1 );
+            builder1.setMinimumLatency( 10 ); //delay before scheduling
+            builder1.setOverrideDeadline( 20 );
             builder1.setExtras( jobExtras );
             JobScheduler jobScheduler1 = context.getSystemService(JobScheduler.class);
             jobScheduler1.cancelAll();
@@ -187,6 +187,7 @@ public class TempWidget extends AppWidgetProvider
     public void onEnabled(Context context)
     {
         // Enter relevant functionality for when the first widget inputStream created
+        Log.d("TempWidget.", "onEnabled");
     }
 
     @Override

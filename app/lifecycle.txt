@@ -1,11 +1,39 @@
 
 
 876 12444-12444/ D/TempWidgetConfigureActivity.: onCreate
-876 12444-12444/ D/TempWidgetConfigureActivity.: after set onclik listener
-883 12444-12444/ D/OpenGLRenderer: Skia GL Pipeline
+876 12444-12444/ D/TempWidgetConfigureActivity.: after set onclik listene
 900 12444-12444/ D/TempWidget.onReceive.intentaction: android.appwidget.action.APPWIDGET_ENABLED
 988 12444-12444/ D/TempWidget.onReceive.intentaction: android.appwidget.action.APPWIDGET_UPDATE
 989 12444-12444/ D/TempWidget.: onUpdate
 989 12444-12444/ D/TempWidget.: onUpdate ELSE
 993 12444-12444/ D/TempWidget.: setRemoteAdapter
+-----------------------------------------------------
+ 
+.205 /com.moonwalker.temperature D/TempWidgetConfigureActivity.: onCreate
+.213 /com.moonwalker.temperature D/OpenGLRenderer: Skia GL Pipeline
+.234 /com.moonwalker.temperature D/TempWidget.onReceive.intentaction: android.appwidget.action.APPWIDGET_ENABLED
+.234 /com.moonwalker.temperature D/TempWidget.: onEnabled
+.329 /com.moonwalker.temperature D/TempWidget.onReceive.intentaction: android.appwidget.action.APPWIDGET_UPDATE
+.331 /com.moonwalker.temperature D/TempWidget.: onUpdate
+.331 /com.moonwalker.temperature D/TempWidget.: onUpdate ELSE
+.341 /com.moonwalker.temperature D/TempWidget.: setRemoteAdapter
+.457 /com.moonwalker.temperature D/Fetchdata.onStartJob: onUpdateJob
+.504 /com.moonwalker.temperature W/System.err: java.lang.Exception: PHPCom.json is null
+.504 /com.moonwalker.temperature W/System.err:     at com.moonwalker.temperature.PHPCom.execute(PHPCom.java:54)
+.504 /com.moonwalker.temperature W/System.err:     at com.moonwalker.temperature.FetchData.pollWeb(FetchData.java:58)
+.504 /com.moonwalker.temperature W/System.err:     at com.moonwalker.temperature.FetchData.onStartJob(FetchData.java:30)
+.504 /com.moonwalker.temperature W/System.err:     at android.app.job.JobService$1.onStartJob(JobService.java:62)
+.504 /com.moonwalker.temperature W/System.err:     at android.app.job.JobServiceEngine$JobHandler.handleMessage(JobServiceEngine.java:108)
+.505 /com.moonwalker.temperature W/System.err:     at android.os.Handler.dispatchMessage(Handler.java:106)
+.505 /com.moonwalker.temperature W/System.err:     at android.os.Looper.loop(Looper.java:193)
+.505 /com.moonwalker.temperature W/System.err:     at android.app.ActivityThread.main(ActivityThread.java:6669)
+.505 /com.moonwalker.temperature W/System.err:     at java.lang.reflect.Method.invoke(Native Method)
+.506 /com.moonwalker.temperature W/System.err:     at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+.506 /com.moonwalker.temperature W/System.err:     at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:858)
+.509 /com.moonwalker.temperature D/Fetchdata.onStartJob: after setting text
+.509 /com.moonwalker.temperature D/FetchData.: onStopJob
+ 18: /com.moonwalker.temperature D/JsonParser.onResponse: {"temphalo":22.75,"humidity":"54.1","timestamphalo":" 17:26:43","temperkely":"7.75","timestamperkely":" 17:27:18","message":"OK"}
+
+
+
 

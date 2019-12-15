@@ -12,8 +12,7 @@ import org.json.JSONObject;
 
 public class JSONParser
 {
-
-    static JSONObject jObj = null;
+    static JSONObject jObj;
     static String json = "";
     Context context;
     static String result="";
@@ -25,8 +24,6 @@ public class JSONParser
         context =ctx;
     }
 
-    // function get json from url
-    // by making HTTP POST or GET mehtod
     public JSONObject makeHttpRequest(String url, int method)
     {
         // Making HTTP request
@@ -36,20 +33,17 @@ public class JSONParser
             else if(method == Request.Method.GET)
             {
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
-                     (Request.Method.GET,
-                             url,
-                             null,
-                             new Response.Listener<JSONObject>()
-                     {
-                         @Override
-                            public void onResponse(JSONObject response)
+                     (Request.Method.GET, url,null,
+                      new Response.Listener<JSONObject>()
                          {
-
-                                 Log.d("JsonParser.onResponse", response.toString());
-                                 jObj = new JSONObject();
-                                 jObj=response;
-                         }
-                     }, new Response.ErrorListener()
+                             @Override
+                                public void onResponse(JSONObject response)
+                                 {
+                                     Log.d("JsonParser.onResponse", response.toString());
+                                     //jObj = new JSONObject();
+                                     jObj=response;
+                                 }
+                         }, new Response.ErrorListener()
                             {
                                 @Override
                                 public void onErrorResponse(VolleyError error)
@@ -57,13 +51,12 @@ public class JSONParser
                                     // TODO: Handle error
                                     Log.d("JsonParser.onErrorResponse",error.toString());
                                 }
-                            });
+                            }
+                     );
 
                 Singletonclass.getInstance(context).addToRequestQueue(jsonObjectRequest);
             }
-
         // return JSON String
         return jObj;
-
     }
 }

@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 
 /**
- * The configuration screen for the {@link TempWidget TempWidget} AppWidget.
+ * The configuration screen
  */
 public class TempWidgetConfigureActivity extends Activity
 {
@@ -49,7 +49,7 @@ public class TempWidgetConfigureActivity extends Activity
     {
         SharedPreferences prefs = context.getSharedPreferences( PREFS_NAME, 0 );
         String titleValue = prefs.getString( PREF_TITLE + appWidgetId, null );
-        int updFrq = prefs.getInt( PREF_FRQ,60);
+        int updFrq =        prefs.getInt( PREF_FRQ,60);
 
         if (titleValue != null)
         {
@@ -57,6 +57,7 @@ public class TempWidgetConfigureActivity extends Activity
         }
         else
         {
+            //TODO lifecycle
             return context.getString( R.string.nodata );
         }
     }
@@ -87,13 +88,11 @@ public class TempWidgetConfigureActivity extends Activity
         setContentView( R.layout.temp_widget_configure );
         mAppWidgetText = findViewById( R.id.appwidget_text );
         mUpdateFrq = findViewById( R.id.etUpdFrq );
-        mUpdateFrq.setText( "30" );
+        mUpdateFrq.setText( String.valueOf(30) );  //30 minutes as default value
 
         Log.d ("TempWidgetConfigureActivity.", "onCreate");
-        findViewById( R.id.add_button ).setOnClickListener( mOnClickListener );
-        Log.d ("TempWidgetConfigureActivity.", "after set onclik listener");
 
-        // Find the widget id from the intent.
+        findViewById( R.id.add_button ).setOnClickListener( mOnClickListener );
 
     }
 
@@ -103,15 +102,16 @@ public class TempWidgetConfigureActivity extends Activity
         {
             final Context context = TempWidgetConfigureActivity.this;
             Intent intent = getIntent();
-            Log.d ("TempWidgetConfigureActivity.", "after getintent");
             Bundle extras = intent.getExtras();
+
             Log.d ("TempWidgetConfigureActivity.", "after getbundle");
 
             if (extras != null)
             {
                 mAppWidgetId = extras.getInt(
                         AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager.INVALID_APPWIDGET_ID );
-                Log.d ("TempWidgetConfigureActivity.", "after getwidgetid");
+
+                Log.d ("TempWidgetConfigureActivity.WIDGET_ID", String.valueOf(mAppWidgetId));
             }
 
             // If this activity was started with an intent without an app widget ID, finish with an error.
