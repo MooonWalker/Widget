@@ -1,13 +1,11 @@
 
-11:26:39.408  D/TempWidgetConfigureActivity.: onCreate
-11:26:39.408  D/TempWidgetConfigureActivity.: after set onclik listener
-11:26:39.408  D/TempWidgetConfigureActivity.: after getintent
-11:26:39.409  D/TempWidgetConfigureActivity.: after getbundle
-11:26:39.409  D/TempWidgetConfigureActivity.: after getwidgetid
-11:26:39.590  D/TempWidget.: onUpdate
-11:26:39.597  D/TempWidget.: setRemoteAdapter
-11:26:39.863  D/Widgetservice.: constructor
-11:26:39.863  D/Widgetservice.: onCreate
-11:26:39.864  D/Widgetservice.: onStartCommand
-11:26:40.599  D/FetchData.: onStartJob
+
+876 12444-12444/ D/TempWidgetConfigureActivity.: onCreate
+876 12444-12444/ D/TempWidgetConfigureActivity.: after set onclik listener
+883 12444-12444/ D/OpenGLRenderer: Skia GL Pipeline
+900 12444-12444/ D/TempWidget.onReceive.intentaction: android.appwidget.action.APPWIDGET_ENABLED
+988 12444-12444/ D/TempWidget.onReceive.intentaction: android.appwidget.action.APPWIDGET_UPDATE
+989 12444-12444/ D/TempWidget.: onUpdate
+989 12444-12444/ D/TempWidget.: onUpdate ELSE
+993 12444-12444/ D/TempWidget.: setRemoteAdapter
 

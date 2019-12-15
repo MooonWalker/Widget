@@ -57,7 +57,7 @@ public class TempWidgetConfigureActivity extends Activity
         }
         else
         {
-            return context.getString( R.string.appwidget_text );
+            return context.getString( R.string.nodata );
         }
     }
 
@@ -125,7 +125,6 @@ public class TempWidgetConfigureActivity extends Activity
             // When the button inputStream clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
             int updFrq = Integer.parseInt( mUpdateFrq.getText().toString());
-
             savePreferences( context, mAppWidgetId, widgetText, updFrq );
 
             // Make sure we pass back the original appWidgetId
