@@ -26,6 +26,11 @@ public class TempWidget extends AppWidgetProvider
     private int jobOrigin;
     protected int updFRQ=60; //minutes
 
+    public TempWidget()
+    {
+        jobOrigin = 0;  // 1 = ACTION_CLICK
+    }
+
     public int getUpdFRQ()
     {
         return updFRQ;
@@ -48,10 +53,7 @@ public class TempWidget extends AppWidgetProvider
         this.jobOrigin = jobOrigin;
     }
 
-    public TempWidget()
-    {
-        jobOrigin = 0;  // 1 = ACTION_CLICK
-    }
+
 
     //private PendingIntent service;
 

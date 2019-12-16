@@ -26,18 +26,10 @@ public class FetchData extends JobService
 
         if(hasConnection())
         {
-            IoTData ioTData1;
-            ioTData1=pollWeb();
 
-            String lastUpdate = getString(R.string.Bedroom)+ ioTData1.getTemphalo()+"C"+
-                    "  "+getString(R.string.Balcony)+ioTData1.getTempErkely()+"C"+"\n"+
-                    ioTData1.getTimestampHalo();
-            RemoteViews view = new RemoteViews(getPackageName(), R.layout.temp_widget);
-            view.setTextViewText(R.id.appwidget_text, lastUpdate);
-            ComponentName theWidget = new ComponentName(this, TempWidget.class);
-            AppWidgetManager manager = AppWidgetManager.getInstance(this);
-            manager.updateAppWidget(theWidget, view);
-            Log.d("Fetchdata.onStartJob","after setting text");
+            pollWeb();
+
+            Log.d("Fetchdata.onStartJob","after pollWeb()");
         }
 
        onStopJob( jobParameters );
@@ -52,13 +44,12 @@ public class FetchData extends JobService
         return true;
     }
 
-    private IoTData pollWeb()
+    private void pollWeb()
     {
         IoTData result;
         PHPCom getPHP =new PHPCom(this);
-        result=getPHP.execute();
+        getPHP.execute();
 
-        return result;
     }
 
     private boolean hasConnection()
