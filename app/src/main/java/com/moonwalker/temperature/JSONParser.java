@@ -11,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -62,9 +63,13 @@ public class JSONParser
                                      String timeStampHalo;
                                      double tempErkely;
                                      String timeStampErkely;
-                                     Date currentTime = Calendar.getInstance().getTime();
+
                                      try
                                      {
+                                         Calendar calendar = Calendar.getInstance();
+                                         SimpleDateFormat df = new SimpleDateFormat("MMM. dd, HH:mm");
+                                         String formattedDate = df.format(calendar.getTime());
+
                                          success = response.getString(QUERY_RESULT);
                                          tempHalo = response.getDouble(TEMP_HALO);
                                          humidity = response.getDouble(HUMIDITY);
@@ -78,7 +83,7 @@ public class JSONParser
                                                  context.getString( R.string.Balcony)+
                                                  tempErkely+"C"
                                                  +"\n"+
-                                                 currentTime;
+                                                 formattedDate;
 
                                          RemoteViews view = new RemoteViews("com.moonwalker.temperature",R.layout.temp_widget);
                                          view.setTextViewText(R.id.appwidget_text, lastUpdate);
