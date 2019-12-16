@@ -78,7 +78,7 @@ public class JSONParser
                                                  context.getString( R.string.Balcony)+
                                                  tempErkely+"C"
                                                  +"\n"+
-                                                 timeStampHalo;
+                                                 currentTime;
 
                                          RemoteViews view = new RemoteViews("com.moonwalker.temperature",R.layout.temp_widget);
                                          view.setTextViewText(R.id.appwidget_text, lastUpdate);
