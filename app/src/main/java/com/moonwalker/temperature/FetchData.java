@@ -46,7 +46,7 @@ public class FetchData extends JobService
 
     private void pollWeb()
     {
-        IoTData result;
+
         PHPCom getPHP =new PHPCom(this);
         getPHP.execute();
 

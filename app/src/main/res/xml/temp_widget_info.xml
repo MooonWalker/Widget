@@ -3,7 +3,7 @@
     android:configure="com.moonwalker.temperature.TempWidgetConfigureActivity"
     android:initialKeyguardLayout="@layout/temp_widget"
     android:initialLayout="@layout/temp_widget"
-    android:minWidth="180dp"
+    android:minWidth="220dp"
     android:minHeight="40dp"
     android:previewImage="@drawable/example_appwidget_preview"
     android:resizeMode="horizontal|vertical"

@@ -11,7 +11,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import java.io.InputStream;
+import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -70,6 +72,7 @@ public class JSONParser
                                          SimpleDateFormat df = new SimpleDateFormat("MMM. dd, HH:mm");
                                          String formattedDate = df.format(calendar.getTime());
 
+                                         String month;
                                          success = response.getString(QUERY_RESULT);
                                          tempHalo = response.getDouble(TEMP_HALO);
                                          humidity = response.getDouble(HUMIDITY);
@@ -77,7 +80,11 @@ public class JSONParser
                                          tempErkely = response.getDouble(TEMP_ERKELY);
                                          timeStampErkely = response.getString(TIMESTAMP_ERKELY).substring(5,16).replace(
                                                  "-", ".");
-
+                                         //month= dateFormatSymbols().);
+                                         //
+                                         String kaka= Integer.valueOf(timeStampErkely.substring(0,2)).toString();
+                                         int monthInteger =Integer.valueOf(timeStampErkely.substring(0,2));
+                                         String dateFormatSymbols= new DateFormatSymbols().getShortMonths()[monthInteger-1];
 
                                          String lastUpdate = context.getString( R.string.Bedroom) +
                                                  tempHalo+"C"+
@@ -85,11 +92,16 @@ public class JSONParser
                                                  context.getString( R.string.Balcony)+
                                                  tempErkely+"C"
                                                  +"\n" +
-                                                 context.getString(R.string.RH)+ ": " + humidity+"% "+
-                                                 "  "+   timeStampErkely;
+                                                 context.getString(R.string.RH)+ ": " + humidity+"% ";
+
 
                                          RemoteViews view = new RemoteViews("com.moonwalker.temperature",R.layout.temp_widget);
                                          view.setTextViewText(R.id.appwidget_text, lastUpdate);
+                                         view.setTextViewText(R.id.textViewSmall,dateFormatSymbols+
+                                                 ". "+
+                                                 timeStampErkely.substring(3,5)+
+                                                 "               "+
+                                                 formattedDate);
 
                                          ComponentName theWidget = new ComponentName(context, TempWidget.class);
                                          AppWidgetManager manager = AppWidgetManager.getInstance(context);

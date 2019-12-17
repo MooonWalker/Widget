@@ -87,8 +87,8 @@ public class TempWidget extends AppWidgetProvider
         RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
         //views.setTextViewText( R.id.appwidget_text, widgetTextfromPref );
         views.setTextViewText( R.id.appwidget_text, context.getString(R.string.nodata) );
+        views.setTextViewText(R.id.textViewSmall,context.getString(R.string.nodata));
 
-        //TODO Jobsheduler?
 
         Intent intent= new Intent(context,TempWidget.class);
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
@@ -148,6 +148,8 @@ public class TempWidget extends AppWidgetProvider
             // Construct the RemoteViews object
              RemoteViews views = new RemoteViews( context.getPackageName(), R.layout.temp_widget );
              views.setTextViewText(R.id.appwidget_text,context.getString(R.string.loading));
+             views.setTextViewText(R.id.textViewSmall,context.getString(R.string.loading));
+
              setRemoteAdapter(context,views,appWidgetId); //-------setremoteadapter
 
              Intent intent= new Intent(context,TempWidget.class);

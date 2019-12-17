@@ -25,14 +25,11 @@ public class PHPCom
 
     Context ctx;
     JSONParser jsonParser;
-    String sendwascorrect = Boolean.TRUE.toString();
+
 
     //private static String url_get_data = "http://localhost/insertsession.php";
     private static String url_get_data = "https://somejourney.info/iot_webfiles/read_temps.php?gettemperatures";
 
-
-    // JSON Node names
-    private static final String TAG_SUCCESS = "message";
 
     public PHPCom(Context _ctx)
     {
@@ -43,7 +40,6 @@ public class PHPCom
     public void execute()
     {
         jsonParser = new JSONParser( ctx );
-
         jsonParser.makeHttpRequest( url_get_data, Request.Method.GET );
 
         //return ioTData;

@@ -10,4 +10,5 @@
     <string name="Balcony">"Balc: "</string>
     <string name="RH">RH</string>
     <string name="updated">since</string>
+    <string name="textViewSmall">TextView</string>
 </resources>
