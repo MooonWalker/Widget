@@ -8,5 +8,6 @@
     <string name="loading">loading...</string>
     <string name="Bedroom">"Bedr: "</string>
     <string name="Balcony">"Balc: "</string>
-    <string name="teszt">háló</string>
+    <string name="RH">RH</string>
+    <string name="updated">since</string>
 </resources>

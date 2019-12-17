@@ -9,4 +9,6 @@
     <string name="appwidget_text">Minta szöveg</string>
     <string name="Bedroom">"Háló: "</string>
     <string name="Balcony">"Erk: "</string>
+    <string name="RH">Pára</string>
+    <string name="updated">frissítve</string>
 </resources>

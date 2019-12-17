@@ -75,15 +75,18 @@ public class JSONParser
                                          humidity = response.getDouble(HUMIDITY);
                                          timeStampHalo = response.getString(TIMESTAMP_HALO);
                                          tempErkely = response.getDouble(TEMP_ERKELY);
-                                         timeStampErkely = response.getString(TIMESTAMP_ERKELY);
+                                         timeStampErkely = response.getString(TIMESTAMP_ERKELY).substring(5,16).replace(
+                                                 "-", ".");
+
 
                                          String lastUpdate = context.getString( R.string.Bedroom) +
                                                  tempHalo+"C"+
                                                  "  "+
                                                  context.getString( R.string.Balcony)+
                                                  tempErkely+"C"
-                                                 +"\n"+
-                                                 formattedDate;
+                                                 +"\n" +
+                                                 context.getString(R.string.RH)+ ": " + humidity+"% "+
+                                                 "  "+   timeStampErkely;
 
                                          RemoteViews view = new RemoteViews("com.moonwalker.temperature",R.layout.temp_widget);
                                          view.setTextViewText(R.id.appwidget_text, lastUpdate);
