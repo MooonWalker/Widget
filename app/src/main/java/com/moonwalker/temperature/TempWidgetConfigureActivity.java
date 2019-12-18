@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -25,6 +26,7 @@ public class TempWidgetConfigureActivity extends Activity
     private static final String PREF_TITLE = "widgettitle";
     private static final String PREF_FRQ = "updfrq";
 
+
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetText; //widget content
     EditText mUpdateFrq;
@@ -37,7 +39,9 @@ public class TempWidgetConfigureActivity extends Activity
     public void onCreate(Bundle bundle)
     {
         super.onCreate( bundle );
-
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        boolean is= pm.isIgnoringBatteryOptimizations("com.moonwalker.temperature");
+        Log.d("isIgnoringBatteryOptimizations??", String.valueOf(is));
         // Set the result to CANCELED.  This will cause the widget host to cancel
         // out of the widget placement if the user presses the back button.
         setResult( RESULT_CANCELED );
