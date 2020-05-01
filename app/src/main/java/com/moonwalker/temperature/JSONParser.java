@@ -85,10 +85,10 @@ public class JSONParser
                                          String kaka= Integer.valueOf(timeStampErkely.substring(0,2)).toString();
                                          int monthInteger =Integer.valueOf(timeStampErkely.substring(0,2));
                                          String dateFormatSymbols= new DateFormatSymbols().getShortMonths()[monthInteger-1];
-
+                                         //Building text string
                                          String lastUpdate = context.getString( R.string.Bedroom) +
                                                  tempHalo+"C"+
-                                                 "  "+
+                                                 "   "+
                                                  context.getString( R.string.Balcony)+
                                                  tempErkely+"C"
                                                  +"\n" +

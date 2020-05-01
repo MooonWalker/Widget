@@ -94,6 +94,7 @@ public class TempWidget extends AppWidgetProvider
         intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
 
+
         Intent intent2 = new Intent(context, TempWidget.class);
         intent2.setAction(ACTION_CLICK);
         PendingIntent.getBroadcast(context, 0, intent2, 0);
