@@ -10,15 +10,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import java.io.InputStream;
-import java.text.DateFormatSymbols;
-import java.text.SimpleDateFormat;
-import java.time.Month;
-import java.util.Calendar;
-import java.util.Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DateFormatSymbols;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static com.moonwalker.temperature.PHPCom.HUMIDITY;
 import static com.moonwalker.temperature.PHPCom.QUERY_RESULT;

@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Temperature.iml" filepath="$PROJECT_DIR$/Temperature.iml" group="Temperature" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Temperature/app" />
+      <module fileurl="file://$PROJECT_DIR$/Temperature.iml" filepath="$PROJECT_DIR$/Temperature.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Temperature.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Temperature.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Temperature.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Temperature.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Temperature.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Temperature.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Temperature.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Temperature.app.unitTest.iml" />
     </modules>
   </component>
 </project>

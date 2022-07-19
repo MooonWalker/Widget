@@ -97,9 +97,9 @@ public class TempWidget extends AppWidgetProvider
 
         Intent intent2 = new Intent(context, TempWidget.class);
         intent2.setAction(ACTION_CLICK);
-        PendingIntent.getBroadcast(context, 0, intent2, 0);
+        PendingIntent.getBroadcast(context, 0, intent2, PendingIntent.FLAG_MUTABLE);
         views.setOnClickPendingIntent(R.id.appwidget_text,PendingIntent.getBroadcast(context,
-                0,intent2,0));
+                0,intent2, PendingIntent.FLAG_MUTABLE));
 
         //Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget( appWidgetId, views );
@@ -151,13 +151,13 @@ public class TempWidget extends AppWidgetProvider
              views.setTextViewText(R.id.appwidget_text,context.getString(R.string.loading));
              views.setTextViewText(R.id.textViewSmall,context.getString(R.string.loading));
 
-             setRemoteAdapter(context,views,appWidgetId); //-------setremoteadapter
+             setRemoteAdapter(context,views,appWidgetId); //-------set remoteadapter
 
              Intent intent= new Intent(context,TempWidget.class);
              intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
              intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds);
 
-             PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+             PendingIntent.getBroadcast(context,0, intent, PendingIntent.FLAG_UPDATE_CURRENT |PendingIntent.FLAG_MUTABLE);
 
              views.setOnClickPendingIntent(R.id.appwidget_text,getPendingSelfIntent(context,ACTION_CLICK));
              // Instruct the widget manager to update the widget
@@ -170,7 +170,7 @@ public class TempWidget extends AppWidgetProvider
     {
         Intent intent = new Intent(context, getClass());
         intent.setAction(action);
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
+        return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_MUTABLE);
     }
 
     @Override

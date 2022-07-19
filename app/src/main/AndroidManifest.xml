@@ -23,7 +23,8 @@
             android:permission="android.permission.BIND_JOB_SERVICE" >
         </service>
 
-        <receiver android:name=".TempWidget">
+        <receiver android:name=".TempWidget"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -33,7 +34,8 @@
                 android:resource="@xml/temp_widget_info" />
         </receiver>
 
-        <activity android:name=".TempWidgetConfigureActivity">
+        <activity android:name=".TempWidgetConfigureActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
