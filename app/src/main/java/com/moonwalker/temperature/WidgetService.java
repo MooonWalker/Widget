@@ -26,13 +26,12 @@ public class WidgetService extends RemoteViewsService
     static JSONObject jObj = null;
     static String json = "";
     Context context;
-    private String sendWasCorrect ="false";
+    private final String sendWasCorrect ="false";
     IoTData ioTData;
 
     public WidgetService()
     {
         Log.d("Widgetservice.", "constructor");
-
     }
 
     @Nullable
@@ -47,7 +46,6 @@ public class WidgetService extends RemoteViewsService
     {
         Log.d("Widgetservice.", "onCreate");
         super.onCreate();
-
     }
 
     @Override
